@@ -1,0 +1,41 @@
+.account{
+    width: 50%;
+    height: 38vh;
+    border-radius: 20px;
+    /* box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05); */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    margin: 33px 33px;
+}
+
+/* .accountDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:18vh;
+    margin: 23px;
+} */
+
+.accountDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7rem;
+    /* margin-left: 9px; */
+    margin-top: 43px;
+}
+
+.userData {
+    margin-bottom: 156px;
+    margin-left: 12px;
+}
+
+.accountDetails h3{
+    margin-top: 13px;
+    font-size: 1.5rem;
+}
+
+.user .userImg{
+    width: 275px;
+}
+

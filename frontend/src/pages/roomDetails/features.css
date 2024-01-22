@@ -1,0 +1,14 @@
+.features-table {
+    width: 30%;
+    border-collapse: collapse;
+}
+
+.features-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.feature-label {
+    font-weight: bold;
+}
