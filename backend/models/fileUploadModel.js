@@ -5,6 +5,7 @@ const fileUploadSchema = new mongoose.Schema({
     city : {
         type : mongoose.Types.ObjectId,
         required: true,
+        ref : 'categoryModel',
     },
     // city : {
     //     type : String,

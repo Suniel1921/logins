@@ -20,7 +20,7 @@ async function uploadFileToCloudinary(file, folder, quality){
 //crate room controller(post method) 
 exports.imageUpload = async (req ,res)=>{
     try {
-        const {city, address, phone, rent, parking, water, floor} = req.body;
+        const {city, address, phone, rent} = req.body;
         // console.log(city, address, phone, rent);
 
         const file = req.files.imageFile;
@@ -42,12 +42,32 @@ exports.imageUpload = async (req ,res)=>{
         // console.log(response);
 
         //db me entry save karni hai 
-        const fileData = await fileUploadModel.create({city,address,phone, rent, imageUrl: response.secure_url, parking, water, floor})
+        const fileData = await fileUploadModel.create({city,address,phone, rent, imageUrl: response.secure_url})
         res.status(200).send({success: true, message: 'Thanks for posting your room.', fileData})
         
     } catch (error) {
         return res.status(500).send({success: false, message: `Error while uploading image ${error}`})
         
+    }
+}
+
+
+
+
+
+
+//get all posted room controller (get mothod)
+exports.getAllRoom = async (req, res)=>{
+    try {
+        const allRoom = await fileUploadModel.find().populate('city');
+        // console.log("All Room Data:", allRoom);
+        if(!allRoom){
+            return res.status(404).send({success: false, message: "Room Details Not Found !"});
+        }
+        return res.status(200).send({success: true, message: "All Room Details Fetched !", allRoom});
+        
+    } catch (error) {
+        return res.status(500).send({success: false, message : "Internal Server Error"});        
     }
 }
 
@@ -66,28 +86,6 @@ exports.getSingleRoom = async (req, res)=>{
         
     }
 }
-
-
-
-
-
-
-//get all posted room controller (get mothod)
-exports.getAllRoom = async (req, res)=>{
-    try {
-        const allRoom = await fileUploadModel.find();
-        if(!allRoom){
-            return res.status(404).send({success: false, message: "Room Details Not Found !"});
-        }
-        return res.status(200).send({success: true, message: "All Room Details Fetched !", allRoom});
-        
-    } catch (error) {
-        return res.status(500).send({success: false, message : "Internal Server Error"})
-        
-    }
-}
-
-
 
 
 //upload room controller (put method)
