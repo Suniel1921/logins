@@ -47,14 +47,3 @@
     }
     
 }
-@media screen and (max-width:385px) {
-    .form input{
-        width: 180px;
-        height: 33px;
-        padding: 23px;
-    }
-    .btn{
-        padding: 17px 68px;
-    }
-    
-}

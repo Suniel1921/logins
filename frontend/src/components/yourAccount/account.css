@@ -39,3 +39,111 @@
     width: 275px;
 }
 
+/* **************showing user room list*********** */
+.userRoomsContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+    margin: 33px 33px;
+  }
+
+  .userRoom {
+      width: calc((100% - (3 * 20px)) / 4); /* Calculate width for 4 cards per row with a 10px gap */
+      box-sizing: border-box;
+      margin: 0;    
+    }   
+ 
+  .userRoom img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+
+
+
+  /* media quieries for user rooms  */
+
+  @media screen and (max-width: 1520px) {
+    .user .userImg {
+      width: 204px;
+    }    
+  }
+  @media screen and (max-width: 1120px) {
+    .user .userImg {
+      width: 227px;
+      margin-bottom: 45px;
+      margin-right: 45px;
+  }   
+  
+  }
+
+
+
+  @media screen and (max-width: 1024px) {
+      .userRoom {
+        width: calc((100% - (2 * 30px)) / 3); 
+        box-sizing: border-box;
+      }    
+      .account{
+        width: 60%;
+        height: 38vh;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        margin: 14px 0px;
+    }
+    .accountDetails {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0rem;
+      margin-top: 0px;
+  } 
+  .user .userImg {
+    width: 226px;
+    margin-top: -172px;
+}
+
+  }
+  @media screen and (max-width: 769px) {
+      .userRoom {
+        width: calc((100% - (1 * 30px)) / 2);  
+        box-sizing: border-box;
+      }    
+  }
+  @media screen and (max-width: 600px) {
+      .userRoom {
+        width: calc((100% - (0 * 30px)) / 1);  
+        box-sizing: border-box;
+      }    
+  }
+  @media screen and (max-width: 400px) {
+    .account{
+      width: 100%;
+      height: 38vh;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      margin: 14px 0px;
+  }
+    
+    .accountDetails {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 0rem;
+      margin-top: 0px;
+  } 
+  .user .userImg {
+    width: 226px;
+    margin-top: -125px;
+}
+  }
+
+
+

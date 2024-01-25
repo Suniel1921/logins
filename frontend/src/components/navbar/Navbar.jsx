@@ -21,6 +21,7 @@ import { Dropdown, Space } from 'antd';
 
 
 const Navbar = () => {
+  
   // *******************modal style**********************
   const modalStyle = {
     top: 80,
@@ -62,7 +63,7 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModelOpen, setIsSignupModelOpen] = useState(false);
-  const [isPostYourRoomModalOpen, setIsPostYourRoomModalOpen] = useState(false);  
+  const [isPostYourRoomModalOpen, setIsPostYourRoomModalOpen] = useState(false);
 
   //handle pop up box modal
   const openModal = () => {
@@ -81,11 +82,20 @@ const Navbar = () => {
     setIsSignupModelOpen(true);
   };
 
-  //post your room modal opening
 
+  //post your room modal opening (if user is logged in then show modal pop up box if not then show login first)
   const openPostYourRoomModel = () => {
-    setIsPostYourRoomModalOpen(true);
+    if (auth.user) {
+      setIsPostYourRoomModalOpen(true);
+    } else {
+      toast.error("Please Login First");
+    }
   }
+
+  const closePostYourRoomModal = () => {
+    setIsPostYourRoomModalOpen(false);
+  };
+
 
   //handle logout
   const handleLogout = () => {
@@ -107,14 +117,16 @@ const Navbar = () => {
           <div className="searchBar">
             <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
           </div>
+
           <div className="postYourRoom" onClick={openPostYourRoomModel}>
-            <NavLink > <div className="plusicon"><CiSquarePlus size={20} />Post Your Room</div></NavLink>
+            <NavLink > <div className="plusicon"><CiSquarePlus size={20} /><span  className="postYourRoomText">Post Your Room</span></div></NavLink>
             {/* <NavLink to={'/account/postYourRoom'}> <div className="plusicon"><CiSquarePlus size={20}/> Post Your Room</div></NavLink> */}
           </div>
+
           <div className="userIcon">
             <i onClick={openModal}>
               <div className="allIcons">
-                <IoMenu size={20} />
+                <IoMenu size={20}  className='hamburgurMenu'/>
                 {
                   auth.user ? (
                     <div className="user_initial">{auth.user.name.charAt(0).toUpperCase()}</div>
@@ -129,15 +141,15 @@ const Navbar = () => {
           onCancel={() => setIsModalOpen(false)}
           footer={null}
           style={modalStyle}
-          width={"20%"}
+          // width={"20%"}
           mask={false}
           className="modalCustomWidth"
-          >
+        >
           <div className="popUp_login_singup">
             {auth.user ? (
               <>
-                <h2 style={{textAlign: 'center'}}>Hi ! {auth.user.name}</h2> <hr /> <br />
-                <NavLink to={'/account'}  onClick={() => setIsModalOpen(false)}><p>Your Account</p></NavLink>
+                <h2 style={{ textAlign: 'center' }}>Hi ! {auth.user.name}</h2> <hr /> <br />
+                <NavLink to={'/account'} onClick={() => setIsModalOpen(false)}><p>Your Account</p></NavLink>
                 <p>Help Center</p>
                 <p>Contact</p>
                 <p onClick={handleLogout}>Logout</p>
@@ -150,9 +162,6 @@ const Navbar = () => {
             )}
           </div>
         </Modal>
-
-        
-
 
       </div>
       <Modal
@@ -174,7 +183,7 @@ const Navbar = () => {
       {/* modal for post your room  */}
       <Modal open={isPostYourRoomModalOpen} onCancel={() => setIsPostYourRoomModalOpen(false)} footer={null}>
         <h3 style={{ textAlign: 'center' }}>Post Your Room From Here</h3>
-        <PostYourRoom />
+        <PostYourRoom onClose={closePostYourRoomModal} /> 
       </Modal>
 
 

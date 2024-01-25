@@ -57,6 +57,8 @@ exports.login = async (req, res)=>{
         
         //generate token
         const token = await JWT.sign({_id: userExit._id}, process.env.SECRET_KEY, {expiresIn: '7d'});
+      
+
         return res.status(200).send({success: true, message: "Login Successfully", userExit:{
             name : userExit.name,
             email: userExit.email,

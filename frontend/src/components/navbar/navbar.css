@@ -80,6 +80,10 @@
     width: 4px;
 }
 
+.modalCustomWidth{
+    width: 444px;
+}
+
 
    
 /* ***************media queries***************************** */
@@ -109,6 +113,25 @@
         color: white;
         padding: 13px 15px;
         border-radius: 10px;
+        display: none;
+    }
+    .allIcons{
+        border:none;      
+        
+    }
+    .allIcons:hover{
+        box-shadow: none;
+    }
+    .hamburgurMenu{
+        display: none;
+    }
+    .postYourRoom {
+        display: block;
+        padding: 6px 6px;
+        margin-left: 5px;
+    }
+
+    .postYourRoomText{
         display: none;
     }
 

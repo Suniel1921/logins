@@ -20,12 +20,14 @@ async function uploadFileToCloudinary(file, folder, quality){
 //crate room controller(post method) 
 exports.imageUpload = async (req ,res)=>{
     try {
-        const {city, address, phone, rent} = req.body;
+        const {city, address, phone, rent, parking, water, floor} = req.body;
         // console.log(city, address, phone, rent);
 
         const file = req.files.imageFile;
         // console.log('image file is : ', file);
-       
+        const authUser = req.user;   
+
+        const { latitude, longitude } = req.body;
 
         //validation
         const supportedTypes = ['jpg','jpeg','png'];
@@ -42,16 +44,13 @@ exports.imageUpload = async (req ,res)=>{
         // console.log(response);
 
         //db me entry save karni hai 
-        const fileData = await fileUploadModel.create({city,address,phone, rent, imageUrl: response.secure_url})
+        const fileData = await fileUploadModel.create({authUser, city,address,phone, rent, imageUrl: response.secure_url,parking, water, floor })
         res.status(200).send({success: true, message: 'Thanks for posting your room.', fileData})
         
     } catch (error) {
         return res.status(500).send({success: false, message: `Error while uploading image ${error}`})
-        
     }
 }
-
-
 
 
 
@@ -67,25 +66,47 @@ exports.getAllRoom = async (req, res)=>{
         return res.status(200).send({success: true, message: "All Room Details Fetched !", allRoom});
         
     } catch (error) {
-        return res.status(500).send({success: false, message : "Internal Server Error"});        
+        return res.status(500).send({success: false, message : `Internal Server Error ${error}`});        
     }
 }
 
+// //get single post room 
+// exports.getSingleRoom = async (req, res)=>{
+//     try {
+//         const {id} = req.params;
+//         const singleRoom = await fileUploadModel.findById(id);
+//         if(!singleRoom){
+//             return res.status(404).send({success: false, message: "No single room found !"});
+//         }        
+//         return res.status(200).send({success: true, message: "single room fetched", singleRoom})
+        
+//     } catch (error) {
+//         return res.status(500).send({success: false, message : "Error while getting single room details"})
+        
+//     }
+// }
+
+// get single room with view count
 //get single post room 
-exports.getSingleRoom = async (req, res)=>{
+exports.getSingleRoom = async (req, res) => {
     try {
-        const {id} = req.params;
-        const singleRoom = await fileUploadModel.findById(id);
-        if(!singleRoom){
-            return res.status(404).send({success: false, message: "No single room found !"});
-        }        
-        return res.status(200).send({success: true, message: "single room fetched", singleRoom})
-        
+      const { id } = req.params;
+      const singleRoom = await fileUploadModel.findById(id);
+  
+      if (!singleRoom) {
+        return res.status(404).send({ success: false, message: "No single room found!" });
+      }
+  
+      // Increment view count for the single room
+      singleRoom.viewCount = (singleRoom.viewCount || 0) + 1;
+      await singleRoom.save();
+  
+      return res.status(200).send({ success: true, message: "Single room fetched", singleRoom });
     } catch (error) {
-        return res.status(500).send({success: false, message : "Error while getting single room details"})
-        
+      return res.status(500).send({ success: false, message: "Error while getting single room details" });
     }
-}
+  };
+  
 
 
 //upload room controller (put method)
@@ -110,7 +131,7 @@ exports.deleteRoom = async (req, res)=>{
         if(!deleteRoom){
             return res.status(404).send({success: false , message : "Room Not Found !"});
         }
-        return res.status(200).send({success: true, message: "Room Delted Successfully"})
+        res.status(200).send({success: true, message: "Room Deleted Successfully"})
         
     } catch (error) {
         return res.status(500).send({success: false, message : "Error while deleting room details"})
@@ -145,17 +166,22 @@ exports.searchRoomByAddress = async (req, res) => {
   };
 
 
-  //get how many room posted by user show on their account
-//   exports.userRoomCount = async (req, res) => {
-//     try {
-//         const userId = req.query.userId;
-//         const rooms = await fileUploadModel.find({ user: userId });
-//         res.status(200).json({ success: true, message: "User rooms fetched", rooms });
-//       } catch (error) {
-//         console.error('Error fetching user rooms:', error);
-//         res.status(500).json({ success: false, message: "Internal Server Error." });
-//       }
-//   };
+
+
+
+// **************************
+//this route is for showing how many room user can posted (on Account.jsx file)
+exports.userRoomCount = async (req, res) => {
+    try {
+      const userId = req.user;
+      const roomsWithUser = await fileUploadModel.find({ authUser: userId }).populate('authUser');
+      res.status(200).json({ success: true, message: "User rooms fetched", roomsWithUser });
+    } catch (error) {
+      console.error('Error fetching user rooms:', error);
+      res.status(500).json({ success: false, message: "Internal Server Error." });
+    }
+  };
+
   
 
 

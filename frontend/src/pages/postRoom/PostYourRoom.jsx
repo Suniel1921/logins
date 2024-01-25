@@ -6,9 +6,11 @@ const { Option } = Select;
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import '../postRoom/postYourRoom.css'
+import { redirect, useNavigate } from 'react-router-dom';
 
-const PostYourRoom = () => {
+const PostYourRoom = ({ onClose }) => {
     const [category, setCategory] = useState([]);
+    const navigate = useNavigate();
 
     const getAllCategory = async () => {
         try {
@@ -91,6 +93,8 @@ const PostYourRoom = () => {
                     // Reset the form (including all fields)
                     // formik.resetForm({ values: { city: '', address: '', phone: '', rent: '', imageFile: null },  });
                     formik.resetForm();
+                    // After successful post, close the modal
+                    onClose();
                 }
             } catch (error) {
                 if (error.response) {

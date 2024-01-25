@@ -1,7 +1,7 @@
 const mongoose = require ("mongoose");
-const Schema = mongoose.Schema; //or
-// const { Schema } = mongoose; 
+
 const authSchema = new mongoose.Schema({
+
     name : {
         type : String,
         required : [true, "Name is required"],

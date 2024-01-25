@@ -7,12 +7,21 @@
     outline: none;
 }
 
+.searchSkeleton {
+    height: 35px;
+    width: 330px;
+}
+
 
 
 
 @media screen and (max-width:470px) {
     .searchBar input{
         width: 200px;
+    }
+    .searchSkeleton {
+        height: 35px;
+        width: 30px;
     }
     
 }
