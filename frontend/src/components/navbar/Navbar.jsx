@@ -157,6 +157,7 @@ const Navbar = () => {
               <>
                 <h2 style={{ textAlign: 'center' }}>Hi ! {auth.user.name}</h2> <hr /> <br />
                 <NavLink to={'/account'} onClick={() => setIsModalOpen(false)}><p>Your Account</p></NavLink>
+            
                 <p>Help Center</p>
                 <p>Contact</p>
                 <p onClick={handleLogout}>Logout</p>
