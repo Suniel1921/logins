@@ -10,6 +10,7 @@ const CardSkeleton = () => {
       <Skeleton width={300} height={300} />
       <h3><Skeleton width={300} /></h3>
       <p><Skeleton width={150} /></p>
+      <p><Skeleton width={150} /></p>
     </div>
     </SkeletonTheme>
     </>

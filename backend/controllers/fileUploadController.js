@@ -48,7 +48,7 @@ exports.imageUpload = async (req ,res)=>{
         res.status(200).send({success: true, message: 'Thanks for posting your room.', fileData})
         
     } catch (error) {
-        return res.status(500).send({success: false, message: `Error while uploading image ${error}`})
+        return res.status(500).send({success: false, message: `Error while uploading image `})
     }
 }
 
@@ -66,7 +66,8 @@ exports.getAllRoom = async (req, res)=>{
         return res.status(200).send({success: true, message: "All Room Details Fetched !", allRoom});
         
     } catch (error) {
-        return res.status(500).send({success: false, message : `Internal Server Error ${error}`});        
+        return res.status(500).send({success: false, message : `Internal Server Error`});        
+        // return res.status(500).send({success: false, message : `Internal Server Error ${error}`});        
     }
 }
 
@@ -112,9 +113,9 @@ exports.getSingleRoom = async (req, res) => {
 //upload room controller (put method)
 exports.updateRoom = async (req ,res)=>{
     try {
-        const {address, phone, rent} = req.body;
+        const {address, phone, rent,parking,water,floor} = req.body;
         const {id} = req.params;
-        const updateRoom = await fileUploadModel.findByIdAndUpdate(id,{address,phone,rent}, {new: true});
+        const updateRoom = await fileUploadModel.findByIdAndUpdate(id,{address,phone,rent,parking,water,floor}, {new: true});
         return res.status(200).send({success: true, message: "Room details updated successfully !", updateRoom});
         
     } catch (error) {
@@ -134,7 +135,7 @@ exports.deleteRoom = async (req, res)=>{
         res.status(200).send({success: true, message: "Room Deleted Successfully"})
         
     } catch (error) {
-        return res.status(500).send({success: false, message : "Error while deleting room details"})
+        return res.status(500).send({success: false, message : "Internal Server Error"})
         
     }
 }

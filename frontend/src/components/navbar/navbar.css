@@ -1,3 +1,4 @@
+
 .user_initial{
     width: 33px;
     height: 33px;
@@ -13,8 +14,10 @@
 }
 
 
+
+
 .navbarContainer{
-    position: relative;
+    position: sticky;
 }
 .navbar{
     display: flex;
@@ -108,6 +111,9 @@
 
 
 @media screen and (max-width: 400px){
+    .mainLogo{
+        width: 38px;
+    }
     .postYourRoom {
         background-color: var(--primary_Dark_Blue_color);
         color: white;

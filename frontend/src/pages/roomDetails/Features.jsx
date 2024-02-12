@@ -1,10 +1,12 @@
 import React from 'react'
 import '../roomDetails/features.css'
+import { FiPhoneCall } from "react-icons/fi";
 
-const Features = ({singleRoom}) => {
-  return (
-    <>
-            <div className='roomdetails'>
+const Features = ({ singleRoom }) => {
+    return (
+        <>
+            <section className='singlePageContainer'>
+            <div className='roomdetails '>
                 {/* <h3>Features</h3> */}
                 <table className="features-table">
                     <tbody>
@@ -31,8 +33,20 @@ const Features = ({singleRoom}) => {
                     </tbody>
                 </table>
             </div>
+           {/* showing phone call icon */}
+            <div className='phoneCallCard'>
+            <div className='phoneDetail'>
+            <h4>Call Room Owener</h4>
+                <a href={`tel:${singleRoom.phone}`} className='phoneDetails'>
+                   <span className='callIcon'> <FiPhoneCall/></span>
+                    {singleRoom.phone}
+                </a>
+            </div>
+            </div>
+            </section>
+
         </>
-  )
+    )
 }
 
 export default Features

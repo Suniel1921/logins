@@ -44,12 +44,13 @@ const PostYourRoom = ({ onClose }) => {
                 return String(value).length === 10;
             })
             .required('Phone Number is required'),
-            imageFile : Yup.string().required("iamge is required"),
-            city : Yup.string().required("City is required"),
-        rent: Yup.number().required("Rent is required").max(20000, "Room Rent Must be less than 20000"),
-        parking : Yup.string().required("Parking filed is requried"),
-        water : Yup.string().required("Water filed is requried"),
-        floor : Yup.string().required("Floor filed is requried"),
+        imageFile: Yup.string().required("iamge is required"),
+        city: Yup.string().required("City is required"),
+        rent: Yup.number().required("Rent is required"),
+        // rent: Yup.number().required("Rent is required").max(20000, "Room Rent Must be less than 20000"),
+        parking: Yup.string().required("Parking filed is requried"),
+        water: Yup.string().required("Water filed is requried"),
+        floor: Yup.string().required("Floor filed is requried"),
     })
 
     const formik = useFormik({
@@ -126,7 +127,7 @@ const PostYourRoom = ({ onClose }) => {
                             category.map((c) => (
                                 <Option key={c._id} value={c._id}>{c.name}</Option>
                             ))}
-                    {formik.touched.city && formik.errors.city && <p className='postRoomErrors'>{formik.errors.city}</p>}
+                        {formik.touched.city && formik.errors.city && <p className='postRoomErrors'>{formik.errors.city}</p>}
                     </Select>
 
                     <div>
@@ -212,7 +213,12 @@ const PostYourRoom = ({ onClose }) => {
                         )}
                     </div>
 
-                    <button className='postRoomFormBtn' type="submit">Submit</button>
+                    {/* <button className='postRoomFormBtn' type="submit">Submit</button> */}
+                    <button className='postRoomFormBtn' type="submit" disabled={formik.isSubmitting}>
+                        {formik.isSubmitting ? "Uploading..." : "Submit"}
+                    </button>
+                    
+
                 </form>
             </div>
         </>

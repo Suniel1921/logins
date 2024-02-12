@@ -9,6 +9,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Modal, Slider, InputNumber } from "antd";
 import { NavLink } from "react-router-dom";
 
+
 const CategoryList = ({
   onCategoryClick,
   onAllClick,
@@ -146,7 +147,9 @@ const CategoryList = ({
                 {/* <i>
                   <SiKashflow />
                 </i> */}
+               <div>
                 <p>All</p>
+               </div>
               </div>
               {/* Render category list */}
               {categoryList?.length > 0 ? (
@@ -161,11 +164,15 @@ const CategoryList = ({
                     {/* <i>
                       <SiKashflow /> //this is for icon
                     </i> */}
+                    <div>
                     <p>{category.name}</p>
+                    </div>
                   </div>
                 ))
               ) : (
+                
                 <p>No categories available</p>
+                
               )}
             </>
           )}
@@ -174,10 +181,10 @@ const CategoryList = ({
         {/* Right Section for Filter */}
         <div className="righSection">
           <div className="filter" onClick={showFilterModal}>
-            <p className="filterbyPrice">
+            <div className="filterbyPrice">
               <div className="filterIonc"><GrFilter className='icon' /></div>
              <span className="filterText"> Filters</span>
-            </p>
+            </div>
           </div>
         </div>
       </section>
@@ -188,6 +195,8 @@ const CategoryList = ({
         open={isFilterModalVisible}
         onOk={handleFilterOk}
         onCancel={handleFilterCancel}
+        okButtonProps={{ style: { backgroundColor: '#7571F9' } }} // Set background color for the Ok button
+        cancelButtonProps={{ style: { backgroundColor: 'transparent', borderColor: '#7571F9', color: '#7571F9' } }} // Set styles for the Cancel button
       >
         {/* Slider for selecting price range */}
         <Slider
@@ -197,23 +206,25 @@ const CategoryList = ({
           min={0}
           max={20000}
           onChange={(value) => setPriceRangeLocal(value)}
+          trackStyle={[{ backgroundColor: '#7571F9' }]} // Set track color for the Slider
+          
         />
         {/* InputNumber components for fine-tuning the selected price range */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <InputNumber
-            style={{ width: 100 }}
+            style={{ width: 100, borderColor: '#7571F9'}}
             value={priceRange[0]}
             onChange={(value) => setPriceRangeLocal([value, priceRange[1]])}
           />
           <InputNumber
-            style={{ width: 100 }}
+            style={{ width: 100, borderColor: '#7571F9' }}
             value={priceRange[1]}
             onChange={(value) => setPriceRangeLocal([priceRange[0], value])}
           />
         </div>
         {/* Reset button to reset the filter and reload the page */}
         <div style={{ marginTop: 16 }}>
-          <button onClick={handleResetFilter}>Reset</button>
+          <button className="resetBtn" onClick={handleResetFilter}>Reset</button>
         </div>
       </Modal>
     </>

@@ -39,20 +39,16 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Room List:", roomList);
   }, [roomList]);
 
   useEffect(() => {
-    console.log("Selected Category:", selectedCategory);
   }, [selectedCategory]);
 
   const handleCategoryClick = (category) => {
-    console.log("Category clicked:", category);
     setSelectedCategory(category);
   };
 
   const handleAllClick = () => {
-    console.log("All clicked");
     setSelectedCategory(null);
   };
 
@@ -60,7 +56,8 @@ const Home = () => {
     (!selectedCategory || room.city._id.toString() === selectedCategory._id) &&
     room.rent >= priceRange[0] &&
     room.rent <= priceRange[1] &&
-    room.address.toLowerCase().includes(searchQuery.toLowerCase())
+    // room.city.name.toLowerCase().includes(searchQuery.toLowerCase()) // search by city
+    room.address.toLowerCase().includes(searchQuery.toLowerCase()) //search by address
   );
 
   return (
@@ -89,7 +86,7 @@ const Home = () => {
               ) : (
                 <>
                   {filteredRoomList.map((room) => (
-                    <div className='chilCard' key={room.id} onClick={() => navigate(`/roomDetails/${room._id}`)}>
+                    <div className='chilCard' key={room._id} onClick={() => navigate(`/roomDetails/${room._id}`)}>
                       <img src={room.imageUrl} alt='room image' />
                       <h3>{room.address}</h3>
                       <p>Rs.{room.rent}</p>
@@ -107,3 +104,5 @@ const Home = () => {
 };
 
 export default Home;
+
+

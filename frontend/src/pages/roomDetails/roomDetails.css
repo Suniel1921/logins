@@ -49,6 +49,13 @@
     width: 153px;
 }
 
+.socialMediaIcons{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 30px;
+}
 
 /* ------------media queries------------------- */
 

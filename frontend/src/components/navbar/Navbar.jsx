@@ -1,8 +1,6 @@
-// // import React, { useState } from "react";
-// // import { NavLink } from "react-router-dom";
-// // import "../navbar/navbar.css";
+// Importing necessary React and library components
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect, useNavigate } from "react-router-dom";
 import "../navbar/navbar.css";
 import Search from "../search/Search";
 import { Modal } from "antd";
@@ -15,14 +13,14 @@ import { toast } from "react-toastify";
 import { CiSquarePlus } from "react-icons/ci";
 import { useSearchGlobally } from "../../context/SearchContext";
 import PostYourRoom from "../../pages/postRoom/PostYourRoom";
-
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
 
-
+// Functional component for the Navbar
 const Navbar = () => {
   
-  // *******************modal style**********************
+
+  // Style for the modal
   const modalStyle = {
     top: 80,
     left: 463,
@@ -30,6 +28,7 @@ const Navbar = () => {
     width: '3%',
   };
 
+  // Adjusting modal style based on window width
   if (window.innerWidth <= 1178) {
     modalStyle.top = "80px";
     modalStyle.left = "350px";
@@ -43,7 +42,7 @@ const Navbar = () => {
   if (window.innerWidth <= 750) {
     modalStyle.top = "80px";
     modalStyle.left = "220px";
-    modalStyle.width = "20%";
+    modalStyle.width = "20%"; 
   }
   if (window.innerWidth <= 580) {
     modalStyle.top = "80px";
@@ -56,34 +55,35 @@ const Navbar = () => {
     modalStyle.width = "100%";
   }
 
-  // *******************modal style end here**********************
-
+  // Using global state for authentication and search
   const [auth, setAuth] = useAuthGloabally();
   const { searchQuery, setSearchQuery } = useSearchGlobally();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModelOpen, setIsSignupModelOpen] = useState(false);
   const [isPostYourRoomModalOpen, setIsPostYourRoomModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-  //handle pop up box modal
+  // Function to open the main modal
   const openModal = () => {
     setIsModalOpen(true);
     setIsLoginModalOpen(false);
     setIsSignupModelOpen(false);
   };
 
+  // Function to open the login modal
   const openLoginModal = () => {
     setIsModalOpen(false);
     setIsLoginModalOpen(true);
   };
 
+  // Function to open the signup modal
   const openSignupModal = () => {
     setIsModalOpen(false);
     setIsSignupModelOpen(true);
   };
 
-
-  //post your room modal opening (if user is logged in then show modal pop up box if not then show login first)
+  // Function to open the "Post Your Room" modal
   const openPostYourRoomModel = () => {
     if (auth.user) {
       setIsPostYourRoomModalOpen(true);
@@ -92,37 +92,43 @@ const Navbar = () => {
     }
   }
 
+  // Function to close the "Post Your Room" modal
   const closePostYourRoomModal = () => {
     setIsPostYourRoomModalOpen(false);
   };
 
-
-  //handle logout
+  // Function to handle user logout
   const handleLogout = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("token");
-    toast.success("Logged Out Successfully")
-    // setIsModalOpen(false); //for show login singup modal pop up or not
+    toast.success("Logged Out Successfully");
+    navigate("/")
+    
   };
 
+  // Rendering the JSX for the Navbar
   return (
     <>
       <div className="navbarContainer">
         <nav className="navbar">
+          {/* Logo */}
           <div className="logo">
             <NavLink to={"/"}>
-              <h4>logo</h4>
+              <img className="mainLogo" src="/logo/hamrorooms.png" alt="" />
             </NavLink>
           </div>
+          
+          {/* Search bar */}
           <div className="searchBar">
             <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
           </div>
 
+          {/* "Post Your Room" button */}
           <div className="postYourRoom" onClick={openPostYourRoomModel}>
             <NavLink > <div className="plusicon"><CiSquarePlus size={20} /><span  className="postYourRoomText">Post Your Room</span></div></NavLink>
-            {/* <NavLink to={'/account/postYourRoom'}> <div className="plusicon"><CiSquarePlus size={20}/> Post Your Room</div></NavLink> */}
           </div>
 
+          {/* User icon and menu */}
           <div className="userIcon">
             <i onClick={openModal}>
               <div className="allIcons">
@@ -136,13 +142,14 @@ const Navbar = () => {
             </i>
           </div>
         </nav>
+
+        {/* Main modal for user actions */}
         <Modal
           open={isModalOpen}
           onCancel={() => setIsModalOpen(false)}
           footer={null}
           style={modalStyle}
-          // width={"20%"}
-          mask={false}
+          mask={false} 
           className="modalCustomWidth"
         >
           <div className="popUp_login_singup">
@@ -162,8 +169,9 @@ const Navbar = () => {
             )}
           </div>
         </Modal>
-
       </div>
+
+      {/* Modals for login, signup, and "Post Your Room" */}
       <Modal
         open={isLoginModalOpen}
         onCancel={() => setIsLoginModalOpen(false)}
@@ -176,19 +184,24 @@ const Navbar = () => {
         onCancel={() => setIsSignupModelOpen(false)}
         footer={null}
       >
-        <Singup />
+        <Singup onClose={() => setIsSignupModelOpen(false)} />
       </Modal>
       <hr />
 
-      {/* modal for post your room  */}
+      {/* Modal for "Post Your Room" */}
       <Modal open={isPostYourRoomModalOpen} onCancel={() => setIsPostYourRoomModalOpen(false)} footer={null}>
         <h3 style={{ textAlign: 'center' }}>Post Your Room From Here</h3>
         <PostYourRoom onClose={closePostYourRoomModal} /> 
       </Modal>
-
-
     </>
   );
 };
 
 export default Navbar;
+
+
+
+
+
+
+

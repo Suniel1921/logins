@@ -56,6 +56,19 @@
   cursor: pointer;
 }
 
+/* ***********filter by price pop up modal style ************* */
+.resetBtn{
+  background-color: var(--primary_Dark_Blue_color);
+  color: white;
+  border: none;
+  padding: 8px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+/* ***********filter by price pop up modal end ************* */
+
 
 /* ***************media queries************************** */
 
@@ -75,7 +88,7 @@
 
   .icon{
    margin-top: 10px;
-   color: black;
+   color: white;
 
   }
 

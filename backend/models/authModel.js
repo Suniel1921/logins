@@ -20,7 +20,14 @@ const authSchema = new mongoose.Schema({
     role : {
         type : Number,
         default : 0,
-    }
+    },
+    otp: {
+        type: Number,
+        required: true,
+      },
+      isVerified: {
+        type: Boolean,
+      },
 
 }, {timestamps: true})
 
