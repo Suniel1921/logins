@@ -51,6 +51,7 @@ const PostYourRoom = ({ onClose }) => {
         parking: Yup.string().required("Parking filed is requried"),
         water: Yup.string().required("Water filed is requried"),
         floor: Yup.string().required("Floor filed is requried"),
+        roomType : Yup.string().required('Room Types is required'),
     })
 
     const formik = useFormik({
@@ -63,6 +64,7 @@ const PostYourRoom = ({ onClose }) => {
             parking: '',
             water: '',
             floor: '',
+            roomType : '',
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
@@ -80,6 +82,7 @@ const PostYourRoom = ({ onClose }) => {
                 formData.append('parking', values.parking);
                 formData.append('water', values.water);
                 formData.append('floor', values.floor);
+                formData.append('roomType', values.roomType);
 
 
                 const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/api/v1/upload/uploadimg`, formData);
@@ -212,6 +215,26 @@ const PostYourRoom = ({ onClose }) => {
                             <p className="postRoomErrors">{formik.errors.floor}</p>
                         )}
                     </div>
+                    <div className='roomType'>
+                        {/* <label htmlFor="room type">Parking Availability:</label> */}
+                        <select
+                            id="parking"
+                            name="roomType"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.roomType}
+                        >
+                            <option value="" label="Room Type" />
+                            <option value="single room" label="single room" />
+                            <option value="double room" label="double room" />
+                            <option value="room and kitchen" label="room and kitchen" />
+                            <option value="flat" label="flat" />
+                        </select>
+
+                        {formik.touched.roomType && formik.errors.roomType && (
+                            <p className="postRoomErrors">{formik.errors.roomType}</p>
+                        )}
+                    </div> 
 
                     {/* <button className='postRoomFormBtn' type="submit">Submit</button> */}
                     <button className='postRoomFormBtn' type="submit" disabled={formik.isSubmitting}>

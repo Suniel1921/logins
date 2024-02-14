@@ -20,7 +20,7 @@ async function uploadFileToCloudinary(file, folder, quality){
 //crate room controller(post method) 
 exports.imageUpload = async (req ,res)=>{
     try {
-        const {city, address, phone, rent, parking, water, floor} = req.body;
+        const {city, address, phone, rent, parking, water, floor, roomType} = req.body;
         // console.log(city, address, phone, rent);
 
         const file = req.files.imageFile;
@@ -44,11 +44,11 @@ exports.imageUpload = async (req ,res)=>{
         // console.log(response);
 
         //db me entry save karni hai 
-        const fileData = await fileUploadModel.create({authUser, city,address,phone, rent, imageUrl: response.secure_url,parking, water, floor })
+        const fileData = await fileUploadModel.create({authUser, city,address,phone, rent, imageUrl: response.secure_url, parking, water, floor, roomType})
         res.status(200).send({success: true, message: 'Thanks for posting your room.', fileData})
         
     } catch (error) {
-        return res.status(500).send({success: false, message: `Error while uploading image `})
+        return res.status(500).send({success: false, message: `Error while uploading image${error} `})
     }
 }
 
@@ -104,18 +104,18 @@ exports.getSingleRoom = async (req, res) => {
   
       return res.status(200).send({ success: true, message: "Single room fetched", singleRoom });
     } catch (error) {
-      return res.status(500).send({ success: false, message: "Error while getting single room details" });
+      return res.status(500).send({ success: false, message: `Error while getting single room details ${error}` });
     }
-  };
+  }; 
   
 
 
 //upload room controller (put method)
 exports.updateRoom = async (req ,res)=>{
     try {
-        const {address, phone, rent,parking,water,floor} = req.body;
+        const {address, phone, rent,parking,water,floor, roomType} = req.body;
         const {id} = req.params;
-        const updateRoom = await fileUploadModel.findByIdAndUpdate(id,{address,phone,rent,parking,water,floor}, {new: true});
+        const updateRoom = await fileUploadModel.findByIdAndUpdate(id,{address,phone,rent,parking,water,floor,roomType}, {new: true});
         return res.status(200).send({success: true, message: "Room details updated successfully !", updateRoom});
         
     } catch (error) {

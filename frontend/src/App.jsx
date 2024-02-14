@@ -40,8 +40,6 @@ const App = () => {
 
               {/* Normal route */}
 
-
-
             </Route>
           </Route>
         </Routes>

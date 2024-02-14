@@ -7,14 +7,15 @@
 .eyesIcon {
     position: absolute;
     left: 371px;
-    bottom: 106px;
+    bottom: 100px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
 
-.singupTextCenter{
+.signupTextCenter{
     text-align: center;
     margin-bottom: 20px;
+    color: #7571f9;
 }
 .form{
     display: flex;
@@ -28,10 +29,19 @@
     width: 332px;
     height: 33px;
     padding: 23px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #7571f9;
 }
 
 .btn{
     padding: 17px 144px;
+    outline: none;
+    border: none;
+    background-color: #7571f9;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
 }
 
 

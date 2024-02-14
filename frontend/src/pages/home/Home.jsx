@@ -87,9 +87,9 @@ const Home = () => {
                 <>
                   {filteredRoomList.map((room) => (
                     <div className='chilCard' key={room._id} onClick={() => navigate(`/roomDetails/${room._id}`)}>
-                      <img src={room.imageUrl} alt='room image' />
+                      <img src={room.imageUrl} alt='room image' loading="lazy"  />
                       <h3>{room.address}</h3>
-                      <p>Rs.{room.rent}</p>
+                      <p>Rent.{room.rent}/month</p>
                       <p>{room.city.name}</p>
                     </div>
                   ))}

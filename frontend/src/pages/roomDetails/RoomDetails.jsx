@@ -104,6 +104,7 @@
 
 
 // **********in this code added a share on socail media platform*********
+
 import React, { useEffect, useState } from 'react';
 import '../roomDetails/roomDetails.css';
 import { toast } from 'react-toastify';
@@ -112,31 +113,32 @@ import { useParams } from 'react-router-dom';
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import Features from './Features';
 import Location from './Location';
+import Loading from '../../components/auth/signup/Loading';
 
 const RoomDetails = () => {
     const { id } = useParams();
     const [singleRoom, setSingleRoom] = useState({});
     const [selectedSection, setSelectedSection] = useState("features");
+    const [isLoading, setIsLoading] = useState(true); // Loading state
 
     const getSingleRoom = async () => {
+        setIsLoading(true); // Set loading state to true
         try {
             const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/api/v1/upload/singleRoom/${id}`);
             // console.log(response)
             if (response.data.success) {
                 setSingleRoom(response.data.singleRoom);
+            } else {
+                toast.error("Something went wrong");
             }
-            else {
-                toast.error("something went wrong")
-            }
-
         } catch (error) {
             if (error.response) {
                 toast.error(error.response.data.message);
+            } else {
+                toast.error("Something went wrong");
             }
-            else {
-                toast.error("something went wrong");
-            }
-
+        } finally {
+            setIsLoading(false); // Set loading state to false
         }
     }
 
@@ -144,19 +146,16 @@ const RoomDetails = () => {
         if (id) getSingleRoom();
     }, [id])
 
-    // Function to share the room details on social media
     const shareRoom = async (platform) => {
-        const shareText = `I found this amazing room located at ${singleRoom.address} on XYZ website. Check it out!`;
+        const shareText = `I found this amazing room located at ${singleRoom.address} on Hamro Rooms website. Check it out!`;
         const shareUrl = window.location.href;
-        
-        // Prepare share content based on selected platform
+
         let shareContent = {
             title: 'Check out this room!',
             text: shareText,
             url: shareUrl
         };
 
-        // Set specific content for WhatsApp as it doesn't support title field
         if (platform === 'whatsapp') {
             shareContent = {
                 text: `${shareText} ${shareUrl}`
@@ -171,8 +170,6 @@ const RoomDetails = () => {
                 toast.error(`Failed to share room on ${platform}. Please try again.`);
             }
         } else {
-            // Fallback mechanism for browsers that do not support navigator.share
-            // Open a new window with the shareable link
             const shareUrlEncoded = encodeURIComponent(shareUrl);
             let shareLink = '';
             switch (platform) {
@@ -183,7 +180,6 @@ const RoomDetails = () => {
                     shareLink = `https://twitter.com/intent/tweet?url=${shareUrlEncoded}&text=${encodeURIComponent(shareText)}`;
                     break;
                 case 'whatsapp':
-                    // Open WhatsApp with pre-filled message
                     shareLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
                     break;
                 default:
@@ -195,44 +191,47 @@ const RoomDetails = () => {
 
     return (
         <>
-            <div className='singleRoomcontainer'>
-                <h3>{singleRoom.address}</h3>
-                <div className='roomImage'>
-                    <div className='room'>
-                        <img className='singleImg' src={singleRoom.imageUrl} alt="" />
-                    </div>
-                    <div className='multiroom'>
-                        <div className='twoimg'>
-                            <img src={singleRoom.imageUrl} alt="" />
-                            <img src={singleRoom.imageUrl} alt="" />
+            {isLoading ? ( // Show loading indicator if isLoading is true
+                <Loading/>
+                
+            ) : (
+                <div className='singleRoomcontainer'>
+                    <h3>{singleRoom.address}</h3>
+                    <div className='roomImage'>
+                        <div className='room'>
+                            <img className='singleImg' src={singleRoom.imageUrl} alt="" loading="lazy" />
                         </div>
-                        <div className='twoimg'>
-                            <img src={singleRoom.imageUrl} alt="" />
-                            <img src={singleRoom.imageUrl} alt="" />
+                        <div className='multiroom'>
+                            <div className='twoimg'>
+                                <img src={singleRoom.imageUrl} alt="" loading="lazy" />
+                                <img src={singleRoom.imageUrl} alt="" loading="lazy" />
+                            </div>
+                            <div className='twoimg'>
+                                <img src={singleRoom.imageUrl} alt="" loading="lazy" />
+                                <img src={singleRoom.imageUrl} alt="" loading="lazy" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className='feature_locationContainer'>
-                    <h4 onClick={() => setSelectedSection('features')}>Features</h4>
-                    <h4 onClick={() => setSelectedSection('location')}>Location</h4>
-                </div>
+                    <div className='feature_locationContainer'>
+                        <h4 onClick={() => setSelectedSection('features')}>Features</h4>
+                        <h4 onClick={() => setSelectedSection('location')}>Location</h4>
+                    </div>
 
-                {selectedSection === 'features' ? (
-                    <Features singleRoom={singleRoom}/>
-                ) : (
-                    <Location singleRoom={singleRoom}/>
-                )}
+                    {selectedSection === 'features' ? (
+                        <Features singleRoom={singleRoom}/>
+                    ) : (
+                        <Location singleRoom={singleRoom}/>
+                    )}
 
-                {/* Buttons/icons to share room on social media */}
-                <h3>Share with your friends</h3>
-                <div className='socialMediaIcons'>
-                    <i style={{color: '#1877F2'}}><FaFacebook onClick={() => shareRoom('facebook')} /></i>
-                   <i style={{color:'#1DA1F2'}}> <FaTwitter onClick={() => shareRoom('twitter')} /></i>
-                    <i style={{color: '#25D366'}}><FaWhatsapp onClick={() => shareRoom('whatsapp')} /></i>
-                    
+                    <h3>Share with your friends</h3>
+                    <div className='socialMediaIcons'>
+                        <i style={{color: '#1877F2'}}><FaFacebook onClick={() => shareRoom('facebook')} /></i>
+                        <i style={{color:'#1DA1F2'}}><FaTwitter onClick={() => shareRoom('twitter')} /></i>
+                        <i style={{color: '#25D366'}}><FaWhatsapp onClick={() => shareRoom('whatsapp')} /></i>
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     )
 }

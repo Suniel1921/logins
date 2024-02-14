@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../login/login.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useAuthGloabally } from "../../../context/AuthContext";
+import { FaRegEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [auth, setAuth] = useAuthGloabally();
@@ -13,6 +15,11 @@ const Login = () => {
     email : Yup.string().email("Invalid Email").required("Email is required"),
     password : Yup.string().required("Password is required"),
   })
+  const [showPassword, setShowPassword] = useState(false);
+   // Toggle show/hide password
+   const handleShowHidePassword = () => {
+    setShowPassword(!showPassword);
+  }
  
   const formik = useFormik({
     initialValues:{
@@ -34,7 +41,7 @@ const Login = () => {
 
           setTimeout(() => {
             window.location.reload();            
-          }, 2000);
+          }, 0);
         }
         
       } catch (error) {
@@ -53,11 +60,14 @@ const Login = () => {
   return (
     <>
       <div className="login">
-        <h2 className="singupTextCenter">Login Here</h2>
+        <h2 className="signupTextCenter">Login Here</h2>
         <form className="form" onSubmit={formik.handleSubmit}>
           <input onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} type="email" name="email" placeholder="Email" />
           {formik.touched.email && formik.errors.email && <p className="errors">{formik.errors.email}</p>}
-          <input onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur} type="password" name="password" placeholder="Password" />
+          <input onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur} type={showPassword ? 'text' : 'password'} name="password" placeholder='Password' />
+          <i className='eyesIcon' onClick={handleShowHidePassword}>
+            {showPassword ? <FaEyeSlash size={18} /> : <FaRegEye size={18} />}
+          </i>
           {formik.touched.password && formik.errors.password && <p className="errors">{formik.errors.password}</p>}
           <button type="submit" className="btn">Login</button>
         </form>
@@ -67,3 +77,11 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+
+
+
+

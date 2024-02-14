@@ -30,6 +30,10 @@ const Features = ({ singleRoom }) => {
                             <td className="feature-label">Floor:</td>
                             <td>{singleRoom.floor}</td>
                         </tr>
+                        <tr>
+                            <td className="feature-label">Room Type:</td>
+                            <td>{singleRoom.roomType}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -13,6 +13,7 @@
       width: calc((100% - (3 * 20px)) / 4); /* Calculate width for 4 cards per row with a 10px gap */
       box-sizing: border-box;
       margin: 0; /* Reset margin to avoid additional spacing issues */     
+      cursor: pointer;
     }   
  
   .chilCard img {
@@ -97,7 +98,7 @@
     .chilCard {
       width: calc((100% - (0 * 30px)) / 1); /* Adjust the width as needed */
       box-sizing: border-box;
-      text-align: center;
+      /* text-align: center; */
     }
   
     /* Remove right margin for the last card */

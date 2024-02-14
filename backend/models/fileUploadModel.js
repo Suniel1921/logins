@@ -45,6 +45,13 @@ const fileUploadSchema = new mongoose.Schema({
     enum: ['1st', '2nd', '3rd', '4th', '5th'],
     required: true,
   },
+  roomType: {
+    type: String,
+    enum: ['single room', 'double room', 'room and kitchen', 'flat'],
+    required: true,
+}
+
+
 
 }, { timestamps: true });
 
