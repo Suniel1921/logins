@@ -15,6 +15,8 @@ import Location from './pages/roomDetails/Location';
 import OTPModal from './pages/OTPmodal/OTPModel';
 import NotFound from './pages/notfound/NotFound';
 import UserRoom from './components/yourAccount/userRoom/UserRoom';
+import AdminDashboard from './components/admin/dashboard/AdminDashboard';
+import Users from './components/admin/users/Users';
 
 
 
@@ -37,6 +39,8 @@ const App = () => {
               <Route path='/account/postYourRoom' element={<PostYourRoom />} />
               <Route index element={<Account />} />
               <Route path='/account/UserRoom' element={<UserRoom/>}/>
+              <Route path='/account/admin' element={<AdminDashboard/>}/>
+              <Route path='/account/admin/users' element={<Users/>}/>
 
               {/* Normal route */}
 

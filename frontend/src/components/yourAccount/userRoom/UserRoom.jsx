@@ -492,7 +492,10 @@ const UserRoom = () => {
   return (
     <>
       <div className='roomContainer'>
-        <Menu />
+      <div className="menu"><Menu /></div>
+      <div className='rightSectionMenuData'>
+
+      
         <div className='roomChild'>
           <div className='userRoomsContainer'>
             {isLoading ? (
@@ -625,6 +628,7 @@ const UserRoom = () => {
             <h3>Are you sure you want to delete this room?</h3>
             <p>This action cannot be undone.</p>
           </Modal>
+        </div>
         </div>
       </div>
     </>

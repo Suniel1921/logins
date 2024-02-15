@@ -6,20 +6,25 @@
   gap: 20px;
 }
 
+.rightSectionMenuData{
+  width: 85%;
+}
 .grid_account {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  width: 100%;
+  
   margin-top: 20px;
   grid-auto-rows: minmax(180px auto);
   height: 85vh;
+}
+.menu{
+  width: 15%;
 }
 
 .box {
   padding: 20px;
   border-radius: 10px;
-  /* border: 1px solid #384256; */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 

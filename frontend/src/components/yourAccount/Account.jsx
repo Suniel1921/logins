@@ -528,11 +528,12 @@ const Account = () => {
     {isLoading ? ( // Show spinner if data is loading
       <>
         <Loading />
-        <Menu /> {/* Menu component loaded during loading state */}
+        {/* <div className="menu"><Menu /></div> */}
       </>
     ) : roomsWithUser.length > 0 ? (
       <div className="accountContainer">
-        <Menu /> {/* Menu component loaded when data is fetched */}
+      <div className="menu"><Menu /></div>
+        <div className="rightSectionMenuData">
         <div className="grid_account">
           <div className="box box1">
             {/* <h3>Welcome 🎉{auth.user?.name} </h3> */}
@@ -551,30 +552,15 @@ const Account = () => {
             </p>
           </div>
           {/* <div className="box box1">New features comming soon....</div> */}
-          <div className="box box2">
-            <Chart />
-          </div>
-          <div className="box box3">
-            <Chart />
-          </div>
-          <div className="box box4">
-            <CirlcePiChart />
-          </div>
-          <div className="box box5">
-            <Chart />
-          </div>
-          <div className="box box6">
-            <Chart />
-          </div>
-          <div className="box box7">
-            <AreaChartBox />
-          </div>
-          <div className="box box8">
-            <LineBarChart />
-          </div>
-          <div className="box box9">
-            <LineBarChart />
-          </div>
+          <div className="box box2"><Chart /></div>
+          <div className="box box3"><Chart /></div>
+          <div className="box box4"><CirlcePiChart /></div>
+          <div className="box box5"><Chart /></div>
+          <div className="box box6"><Chart /></div>
+          <div className="box box7"><AreaChartBox /></div>
+          <div className="box box8"><LineBarChart /></div>
+          <div className="box box9"><LineBarChart /></div>
+        </div>
         </div>
       </div>
     ) : (
