@@ -56,6 +56,7 @@ const Home = () => {
     (!selectedCategory || room.city._id.toString() === selectedCategory._id) &&
     room.rent >= priceRange[0] &&
     room.rent <= priceRange[1] &&
+    room.verified &&
     // room.city.name.toLowerCase().includes(searchQuery.toLowerCase()) // search by city
     room.address.toLowerCase().includes(searchQuery.toLowerCase()) //search by address
   );
@@ -104,5 +105,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

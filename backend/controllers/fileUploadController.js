@@ -56,20 +56,22 @@ exports.imageUpload = async (req ,res)=>{
 
 
 //get all posted room controller (get mothod)
-exports.getAllRoom = async (req, res)=>{
-    try {
-        const allRoom = await fileUploadModel.find().populate('city');
-        // console.log("All Room Data:", allRoom);
-        if(!allRoom){
-            return res.status(404).send({success: false, message: "Room Details Not Found !"});
-        }
-        return res.status(200).send({success: true, message: "All Room Details Fetched !", allRoom});
-        
-    } catch (error) {
-        return res.status(500).send({success: false, message : `Internal Server Error`});        
-        // return res.status(500).send({success: false, message : `Internal Server Error ${error}`});        
+exports.getAllRoom = async (req, res) => {
+  try {
+    const allRoom = await fileUploadModel.find({ verified: true }).populate('city');
+
+    if (!allRoom) {
+      return res.status(404).send({ success: false, message: "Room details not found." });
     }
-}
+
+    return res.status(200).send({ success: true, message: "All room details fetched.", allRoom });
+  } catch (error) {
+    return res.status(500).send({ success: false, message: "Internal server error." });
+  }
+};
+
+
+
 
 // //get single post room 
 // exports.getSingleRoom = async (req, res)=>{
@@ -124,26 +126,9 @@ exports.updateRoom = async (req ,res)=>{
     }
 }
 
-//delete room controller (delete method)
-exports.deleteRoom = async (req, res)=>{
-    try {
-        const {id} = req.params;
-        const deleteRoom = await fileUploadModel.findByIdAndDelete(id);
-        if(!deleteRoom){
-            return res.status(404).send({success: false , message : "Room Not Found !"});
-        }
-        res.status(200).send({success: true, message: "Room Deleted Successfully"})
-        
-    } catch (error) {
-        return res.status(500).send({success: false, message : "Internal Server Error"})
-        
-    }
-}
-
 
 
 //search functionality
-
 
 // Search rooms by address
 exports.searchRoomByAddress = async (req, res) => {
@@ -183,6 +168,61 @@ exports.userRoomCount = async (req, res) => {
     }
   };
 
+
+
+  // *****************************************admin crud Operation*********************************************
+
+  //get all rooms by admin route
+
+exports.getAllRoomByAdmins = async (req, res) => {
+  try {
+    const allRoomByAdmin = await fileUploadModel.find().populate('city');
+
+    if (!allRoomByAdmin) {
+      return res.status(404).send({ success: false, message: "Room details not found." });
+    }
+
+    return res.status(200).send({ success: true, message: "All room details fetched.", allRoomByAdmin });
+  } catch (error) {
+    return res.status(500).send({ success: false, message: `Internal server error. ${error}` });
+  }
+};
+
+
+
+//upload room controller (put method)
+exports.updateRoomByAdmin = async (req ,res)=>{
+  try {
+      const {address, phone, rent, parking, water, floor, roomType, verified} = req.body;
+      const {id} = req.params;
+      const updateRoom = await fileUploadModel.findByIdAndUpdate(id,{address,phone,rent,parking,water,floor,roomType, verified}, {new: true});
+      return res.status(200).send({success: true, message: "Room details updated successfully !", updateRoom});
+      
+  } catch (error) {
+      return res.status(500).send({success: false, message : "Error while updating  room details"})
+      
+  }
+}
+
+
+//delete room controller (delete method)
+exports.deleteRoom = async (req, res)=>{
+  try {
+      const {id} = req.params;
+      const deleteRoom = await fileUploadModel.findByIdAndDelete(id);
+      if(!deleteRoom){
+          return res.status(404).send({success: false , message : "Room Not Found !"});
+      }
+      res.status(200).send({success: true, message: "Room Deleted Successfully"})
+      
+  } catch (error) {
+      return res.status(500).send({success: false, message : "Internal Server Error"})
+      
+  }
+}
   
+
+
+
 
 

@@ -19,7 +19,7 @@ const Footer = () => {
 
           <div className="owner">
             <p>
-              Desing and Created By 💖{" "}
+              Made with 💖 By {" "}
               <Link to={"https://anilthakurbarahi.com.np/"} target="_blank" className="sunil">
                 Suniel Sharma
               </Link>

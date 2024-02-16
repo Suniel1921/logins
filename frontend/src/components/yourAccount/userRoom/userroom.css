@@ -1,10 +1,7 @@
-.roomContainer{
-    display: flex;
-    gap: 20px;
+.roomContainer {
+  display: flex;
+  gap: 20px;
 }
-
-
-
 
 .account {
   width: 50%;
@@ -59,7 +56,9 @@
 }
 
 .userRoom {
-  width: calc((100% - (3 * 20px)) / 3); /* Calculate width for 4 cards per row with a 10px gap */
+  width: calc(
+    (100% - (3 * 20px)) / 3
+  ); /* Calculate width for 4 cards per row with a 10px gap */
   box-sizing: border-box;
   margin: 0;
 }
@@ -130,6 +129,33 @@
 .icons .editIcon {
   color: var(--primary_Dark_Green_color);
   font-size: 20px;
+}
+
+.verified {
+  background-color: var(--primary_Dark_Green_color);
+  width: 30%;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  border-radius: 9px;
+}
+
+
+.not-verified {
+  background-color: var(--primary_Dark_Red_color);
+  width: 50%;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  border-radius: 9px;
+}
+
+.tag{  
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    text-align:center;
+    width: 100px;
 }
 
 /* media quieries for user rooms  */
@@ -206,4 +232,3 @@
     margin-top: -125px;
   }
 }
-

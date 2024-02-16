@@ -17,6 +17,9 @@ import NotFound from './pages/notfound/NotFound';
 import UserRoom from './components/yourAccount/userRoom/UserRoom';
 import AdminDashboard from './components/admin/dashboard/AdminDashboard';
 import Users from './components/admin/users/Users';
+import AdminRoute from './components/admin/adminProtectedRoute/AdminRoute';
+import Room from './components/admin/rooms/Room';
+import Category from './components/admin/category/Category';
 
 
 
@@ -39,12 +42,16 @@ const App = () => {
               <Route path='/account/postYourRoom' element={<PostYourRoom />} />
               <Route index element={<Account />} />
               <Route path='/account/UserRoom' element={<UserRoom/>}/>
-              <Route path='/account/admin' element={<AdminDashboard/>}/>
-              <Route path='/account/admin/users' element={<Users/>}/>
-
-              {/* Normal route */}
-
             </Route>
+
+           <Route path='/dashboard' element={<AdminRoute/>}>
+           <Route path='admin' element={<AdminDashboard/>}/>
+            <Route path='admin/users' element={<Users/>}/>
+            <Route path='admin/rooms' element={<Room/>}/>
+            <Route path='admin/category' element={<Category/>}/>
+           </Route>
+
+
           </Route>
         </Routes>
         <ToastContainer />

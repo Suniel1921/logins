@@ -163,7 +163,26 @@ exports.protectedRoute = async (req, res) => {
     res.status(200).send({ ok: true });
 }
 
-// Admin controller
+// Admin route controller
 exports.admin = (req, res) => {
-    res.send("Welcome to the admin page");
+  res.status(200).send({ ok: true });
 }
+
+
+// ***************get all users in admin dashboard*************
+exports.getAllUsers = async (req, res) => {
+  try {
+    // const allUsers = await authModel.find({}, { password: 0 });
+    const allUsers = await authModel.find().select('-password');
+    if (!allUsers || allUsers.length === 0) {
+      return res.status(404).send({ success: false, message: "User not found" });
+    }
+    return res.status(200).send({ success: true, message: "All User Found", allUsers });
+  } catch (error) {
+    return res.status(500).send({ success: false, message: "Internal server error"});
+  }
+};
+
+
+
+
