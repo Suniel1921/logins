@@ -22,7 +22,7 @@ cloudinary.cloudinaryConnect();
 
 //dotenv configuration
 dotenv.config();
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 8000;
 
 //calling database
 dbConnection();
@@ -41,7 +41,7 @@ app.use('/api/v1/upload', fileUpload);
 
 //default routes 
 app.get("/",(req ,res)=>{
-    res.send("<h2>Welcome to Hamro Rooms 😊</h2>");
+    res.send("<h2>Welcome to Hamro Rooms 😊#Keep Smiling</h2>");
 })
 
 

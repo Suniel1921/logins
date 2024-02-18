@@ -5,8 +5,8 @@ const { requireLogin, isAdmin } = require("../middlewares/authMiddleware");
 
 router.post("/createCategory", requireLogin, isAdmin, controller.createCategory);
 router.get("/allCategory", controller.getAllCategory);
-router.put("/updateCategory/:id", controller.updateCateogry);
-router.delete("/deleteCategory/:id", controller.deleteCategory);
+router.put("/updateCategory/:id", requireLogin, isAdmin, controller.updateCateogry);
+router.delete("/deleteCategory/:id", requireLogin, isAdmin, controller.deleteCategory);
 
 
 module.exports = router;

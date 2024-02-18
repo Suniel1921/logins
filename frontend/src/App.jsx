@@ -43,15 +43,14 @@ const App = () => {
               <Route index element={<Account />} />
               <Route path='/account/UserRoom' element={<UserRoom/>}/>
             </Route>
-
+             {/*protected Admin routes */}
            <Route path='/dashboard' element={<AdminRoute/>}>
            <Route path='admin' element={<AdminDashboard/>}/>
             <Route path='admin/users' element={<Users/>}/>
             <Route path='admin/rooms' element={<Room/>}/>
             <Route path='admin/category' element={<Category/>}/>
            </Route>
-
-
+           
           </Route>
         </Routes>
         <ToastContainer />

@@ -23,8 +23,8 @@ const OTPModal = ({ email, onClose }) => {
 
         if (response.data.success) {
           toast.success('OTP verification successful');
-          onClose(); // Close the OTP modal
-          navigate('/'); // Redirect to the home page
+          onClose(); 
+          navigate('/');
         } else {
           toast.error(`OTP verification failed: ${response.data.message}`);
         }
@@ -38,7 +38,7 @@ const OTPModal = ({ email, onClose }) => {
     }
   };
 
-  // JSX for the OTP modal
+  
   return (
     <Modal
       open={true}

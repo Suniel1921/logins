@@ -12,6 +12,7 @@ router.put("/updateRoom/:id", requireLogin, controller.updateRoom);
 router.put("/updateRoomByAdmin/:id", requireLogin, isAdmin, controller.updateRoomByAdmin);
 router.delete("/deleteRoom/:id", requireLogin, controller.deleteRoom);
 router.get("/roomCount", requireLogin, controller.userRoomCount);
+router.get("/totalRoomCount", controller.totaRoomCount);
 
 
 module.exports = router;

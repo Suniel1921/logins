@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Modal, Button, Input, Space, Tag, Pagination } from "antd";
+import { Table, Modal, Button, Input, Space, Tag } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import "../category/category.css";
 import SideMenu from "../sideMenu/SideMenu";
@@ -14,8 +14,6 @@ const Category = () => {
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(9);
 
     const columns = [
         {
@@ -153,15 +151,7 @@ const Category = () => {
                         <button className="categoryBtn" type="submit">Create Category</button>
                     </form>
 
-                    <Table dataSource={categoryData.slice((currentPage - 1) * pageSize, currentPage * pageSize)} columns={columns} rowKey="_id" />
-                    <Pagination
-                        current={currentPage}
-                        total={categoryData.length}
-                        pageSize={pageSize}
-                        onChange={(page) => setCurrentPage(page)}
-                        showSizeChanger={true}
-                        onShowSizeChange={(current, size) => setPageSize(size)}
-                    />
+                    <Table dataSource={categoryData} columns={columns} rowKey="_id" />
                 </div>
             </div>
 

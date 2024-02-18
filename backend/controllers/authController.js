@@ -10,9 +10,9 @@ const sendOTPByEmail = async (otp, email) => {
     // Creating a nodemailer transporter for sending emails
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      auth: {
-        user: 'sunielsharma1921@gmail.com', // Replace with your Gmail email
-        pass: 'mvqjagkegjejliwd',       // Replace with your Gmail password
+      auth: { 
+        user: process.env.MYEMAIL,
+        pass : process.env.PASSWORD
       },
     });
 
@@ -89,8 +89,6 @@ exports.verifyOTP = async (req, res) => {
   
       // Find the user by email (case-insensitive search)
       const user = await authModel.findOne({ email: { $regex: new RegExp(email, 'i') } });
-  
-      // console.log('User:', user);
   
       if (!user) {
         return res.status(404).send({ success: false, message: 'User not found' });
@@ -183,6 +181,20 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+
+
+//get total user and showing admin dashboard
+
+exports.totalUserCount = async (req, res) => {
+  try {
+    const totalUsers = await authModel.find();
+    const count = totalUsers.length;
+    res.status(200).json({ success: true, message: "rooms fetched successfully", totalUsers, count });
+  } catch (error) {
+    console.error('Error fetching user rooms:', error);
+    res.status(500).json({ success: false, message: "Internal Server Error." });
+  }
+};
 
 
 

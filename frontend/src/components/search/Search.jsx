@@ -1,5 +1,3 @@
-// Search.jsx
-
 import React, { useEffect, useState } from 'react';
 import '../search/search.css';
 import Skeleton from 'react-loading-skeleton';

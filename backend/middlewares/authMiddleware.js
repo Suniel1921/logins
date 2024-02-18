@@ -1,20 +1,6 @@
 const JWT = require("jsonwebtoken");
 const authModel = require("../models/authModel");
 
-// exports.requireLogin = async (req, res, next) => {
-//     try {
-//         // Assuming req._id is the user ID you want to use in the token
-//         const token = req.header("Authorization").replace("Bearer ", "");
-//         const decode = JWT.verify(token, process.env.SECRET_KEY);
-        
-//         req.user = decode; // Assuming you want to attach the user data to the request object
-//         next();
-//     } catch (error) {
-//         return res.status(500).send({ success: false, message: "Something went wrong!" });
-//     }
-// }
-
-// ******OR*********
 
 //*********************PROTECT ROUTES USING TOKEN *******************
 exports.requireLogin = async (req, res, next)=>{

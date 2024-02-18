@@ -12,7 +12,8 @@ router.get("/proctedRoute", requireLogin, controller.protectedRoute);
 router.get("/admin", requireLogin, isAdmin, controller.admin);
 
 // ************getting all users in admin dashboard route ***************
-router.get("/getAllUsers", controller.getAllUsers);
+router.get("/getAllUsers", requireLogin, isAdmin, controller.getAllUsers);
+router.get("/totalUsers", requireLogin, isAdmin, controller.totalUserCount);
 
 
 

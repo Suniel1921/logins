@@ -220,6 +220,20 @@ exports.deleteRoom = async (req, res)=>{
       
   }
 }
+
+
+//total user rooms showing on admin dashboard
+exports.totaRoomCount = async (req, res) => {
+  try {
+    const totalRooms = await fileUploadModel.find();
+    const count = totalRooms.length;
+    res.status(200).json({ success: true, message: "rooms fetched successfully", totalRooms, count });
+  } catch (error) {
+    console.error('Error fetching user rooms:', error);
+    res.status(500).json({ success: false, message: "Internal Server Error." });
+  }
+};
+
   
 
 

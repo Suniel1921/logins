@@ -67,7 +67,7 @@ const CirlcePiChart = () => {
       <div className="circlePIChartBox">
         <h3>heading</h3>
         <div className="chart">
-          <ResponsiveContainer width="99%" height={150}>
+          <ResponsiveContainer width="99%" height={300}>
             <PieChart width={400} height={400}>
               <Pie
                 activeIndex={activeIndex}
