@@ -28,9 +28,13 @@ const Signup = ({ onClose }) => {
   // Validation schema using Yup
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
-    email: Yup.string().email("Invalid Email").required("Email is required"),
+    email: Yup.string()
+        .email("Invalid Email")
+        .required("Email is required")
+        .matches(/@gmail\.com$/, "Email must contain @gmail.com"),
     password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required")
-  });
+});
+
 
   // Formik hook for form management
   const formik = useFormik({
