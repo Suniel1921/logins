@@ -31,7 +31,8 @@
   .menu {
     width: 200px; /* Fixed width */
     background-color: #7572f9;
-    height: 90vh;
+    /* height: 90vh; */
+    height: 100vh;
     color: white;
   }
   

@@ -9,7 +9,7 @@ import Location from './Location';
 import Loading from '../../components/auth/signup/Loading';
 
 const RoomDetails = () => {
-    const { id } = useParams();
+    const { slug } = useParams(); // Use 'slug' instead of 'id'
     const [singleRoom, setSingleRoom] = useState({});
     const [selectedSection, setSelectedSection] = useState("features");
     const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -17,7 +17,7 @@ const RoomDetails = () => {
     const getSingleRoom = async () => {
         setIsLoading(true); // Set loading state to true
         try {
-            const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/api/v1/upload/singleRoom/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_REACT_APP_URL}/api/v1/upload/singleRoom/${slug}`); // Use 'slug' instead of 'id'
             // console.log(response)
             if (response.data.success) {
                 setSingleRoom(response.data.singleRoom);
@@ -36,8 +36,8 @@ const RoomDetails = () => {
     }
 
     useEffect(() => {
-        if (id) getSingleRoom();
-    }, [id])
+        if (slug) getSingleRoom();
+    }, [slug])
 
     const shareRoom = async (platform) => {
         const shareText = `I found this amazing room located at ${singleRoom.address} on Hamro Rooms website. Check it out!`;
@@ -130,3 +130,5 @@ const RoomDetails = () => {
 }
 
 export default RoomDetails;
+
+

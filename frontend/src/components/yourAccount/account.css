@@ -1,6 +1,11 @@
 
 
 /* ***********************************dashboard style**************************** */
+/* .menuContainer{
+  display: flex;
+  gap: 20px;
+
+} */
 .accountContainer {
   display: flex;
   gap: 20px;

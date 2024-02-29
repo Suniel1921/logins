@@ -18,7 +18,7 @@ const Search = () => {
     <>
       {isLoading ? (
         <div className='searchBars'>
-          <Skeleton height={35} width={190} className='searchSkeleton' />
+          <Skeleton height={40} width={180} className='searchSkeleton' />
         </div>
       ) : (
         <div className='searchBar'>

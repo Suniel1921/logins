@@ -31,7 +31,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-              <Route path='/roomDetails/:id' element={<RoomDetails />} />
+              <Route path='/roomDetails/:slug' element={<RoomDetails />} />
+              {/* <Route path='/roomDetails/:id' element={<RoomDetails />} /> */}
               <Route path='/roomDetails/features' element={<Features/>}/>
               <Route path='/roomDetails/location' element={<Location/>}/>
               <Route path='/verifyOTP' element={<OTPModal/>}/>

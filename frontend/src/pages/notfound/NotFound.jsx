@@ -1,9 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import '../notfound/notfound.css';
 
 const NotFound = () => {
   return (
     <>
+      <Helmet>
+        <title>Page Not Found | Hamro Rooms</title>
+        <meta name="description" content="404 Page Not Found on Hamro Rooms. The page you are looking for is not available." />
+      </Helmet>
       <div className='container'>
       <section className="page_404">
         <div className="container">

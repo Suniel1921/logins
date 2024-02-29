@@ -164,15 +164,13 @@ const CategoryList = ({
                     {/* <i>
                       <SiKashflow /> //this is for icon
                     </i> */}
-                    <div>
+                    <div className="categoryName">
                     <p>{category.name}</p>
                     </div>
                   </div>
                 ))
-              ) : (
-                
-                <p>No categories available</p>
-                
+              ) : (                
+                <p>No categories available</p>                
               )}
             </>
           )}
@@ -182,7 +180,8 @@ const CategoryList = ({
         <div className="righSection">
           <div className="filter" onClick={showFilterModal}>
             <div className="filterbyPrice">
-              <div className="filterIonc"><GrFilter className='icon' /></div>
+              {/* <div className="filterIonc"><GrFilter className='icon' /></div> */}
+              <div className="filterIonc"><img className="filterImg" src="/img/filter2.png" alt="" /></div>
              <span className="filterText"> Filters</span>
             </div>
           </div>

@@ -102,11 +102,10 @@ const Navbar = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("token");
     toast.success("Logged Out Successfully");
-    navigate("/")
-    
+    navigate("/")    
   };
 
-  // Rendering the JSX for the Navbar
+
   return (
     <>
       <div className="navbarContainer">
@@ -187,7 +186,7 @@ const Navbar = () => {
       >
         <Singup onClose={() => setIsSignupModelOpen(false)} />
       </Modal>
-      <hr />
+      {/* <hr /> */}
 
       {/* Modal for "Post Your Room" */}
       <Modal open={isPostYourRoomModalOpen} onCancel={() => setIsPostYourRoomModalOpen(false)} footer={null}>

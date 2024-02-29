@@ -1,6 +1,6 @@
 const fileUploadModel = require("../models/fileUploadModel");
-
 const cloudinary = require ("cloudinary").v2;
+const slug = require ("slugify");
 
 
 function isFileSupported(type, supportedTypes){
@@ -91,24 +91,61 @@ exports.getAllRoom = async (req, res) => {
 
 // get single room with view count
 //get single post room 
+// get single room with view count
 exports.getSingleRoom = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const singleRoom = await fileUploadModel.findById(id);
-  
-      if (!singleRoom) {
-        return res.status(404).send({ success: false, message: "No single room found!" });
-      }
-  
-      // Increment view count for the single room
-      singleRoom.viewCount = (singleRoom.viewCount || 0) + 1;
-      await singleRoom.save();
-  
-      return res.status(200).send({ success: true, message: "Single room fetched", singleRoom });
-    } catch (error) {
-      return res.status(500).send({ success: false, message: `Error while getting single room details ${error}` });
+  try {
+    const { slug } = req.params;
+    const singleRoom = await fileUploadModel.findOne({ slug });
+
+    if (!singleRoom) {
+      return res.status(404).send({ success: false, message: "No single room found!" });
     }
-  }; 
+
+    // Increment view count for the single room
+    singleRoom.viewCount = (singleRoom.viewCount || 0) + 1;
+    await singleRoom.save();
+
+    return res.status(200).send({ success: true, message: "Single room fetched", singleRoom });
+  } catch (error) {
+    return res.status(500).send({ success: false, message: `Error while getting single room details ${error}` });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -216,7 +253,7 @@ exports.deleteRoom = async (req, res)=>{
       res.status(200).send({success: true, message: "Room Deleted Successfully"})
       
   } catch (error) {
-      return res.status(500).send({success: false, message : "Internal Server Error"})
+      return res.status(500).send({success: false, message : "Internal Server Error"});
       
   }
 }

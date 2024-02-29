@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import "../yourAccount/account.css";
 import Menu from "./sideMenu/Menu";
 import Chart from "./chart/Chart";
@@ -37,6 +38,12 @@ const Account = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Your Account - HamroRooms</title>
+        <meta name="description" content="Manage your account and view your statistics." />
+        {/* Add more meta tags as needed */}
+      </Helmet>
+
       {isLoading ? ( // Show spinner if data is loading
         <>
           <Loading />
@@ -48,7 +55,6 @@ const Account = () => {
           <div className="rightSectionMenuData">
             <div className="grid_account">
               <div className="box box1">
-                {/* <h3>Welcome 🎉{auth.user?.name} </h3> */}
                 {auth.user && <h3>Welcome 🎉{auth.user.name} </h3>}
                 <h5 style={{ textAlign: "center", margin: "20 20" }}>
                   Disclaimer !
@@ -88,8 +94,10 @@ const Account = () => {
         </div>
       )}
     </>
-
   );
 };
 
 export default Account;
+
+
+

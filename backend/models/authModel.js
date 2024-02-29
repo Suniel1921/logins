@@ -29,6 +29,8 @@ const authSchema = new mongoose.Schema({
         type: Boolean,
       },
 
+
+
 }, {timestamps: true})
 
 const authModel = mongoose.model('authModel', authSchema);
