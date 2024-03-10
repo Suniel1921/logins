@@ -26,7 +26,7 @@ const CategoryList = ({
   const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
 
   // State to manage the price range filter
-  const [priceRange, setPriceRangeLocal] = useState([0, 20000]);
+  const [priceRange, setPriceRangeLocal] = useState([0, 200000]);
 
   // State to store the currently selected category
   const [selectedCategory, setSelectedCategory] = useState(null);
