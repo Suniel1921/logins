@@ -98,7 +98,7 @@ exports.verifyOTP = async (req, res) => {
       if (user.otp && otp === user.otp.toString()) {
         await authModel.findByIdAndUpdate(user._id, { $set: { isVerified: true } });
   
-        return res.status(200).send({ success: true, message: 'OTP verification successful' });
+        return res.status(200).send({ success: true, message: 'OTP verification successful Please Login to proceed' });
       } else {
         return res.status(400).send({ success: false, message: `Invalid OTP` });
       }

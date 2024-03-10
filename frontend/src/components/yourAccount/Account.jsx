@@ -60,13 +60,7 @@ const Account = () => {
                   Disclaimer !
                 </h5>
                 <p>
-                  "HamroRooms takes user privacy and data security seriously.
-                  While every effort is made to protect user data, including phone
-                  numbers and addresses, from unauthorized access or disclosure,
-                  users are advised to exercise caution when sharing personal
-                  information. HamroRooms cannot guarantee absolute security and
-                  is not liable for any data leaks or breaches resulting from user
-                  actions or external factors beyond our control."
+                "We care a lot about keeping your information safe at HamroRooms. Even though we work hard to protect your data, like phone numbers and addresses, we can't promise it's completely safe. So, be careful when sharing personal info. If something goes wrong, like a leak or breach, we're not responsible if it's because of something you did or something beyond our control."
                 </p>
               </div>
               <div className="box box2"><Chart /></div>

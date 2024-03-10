@@ -58,7 +58,7 @@ exports.imageUpload = async (req ,res)=>{
 //get all posted room controller (get mothod)
 exports.getAllRoom = async (req, res) => {
   try {
-    const allRoom = await fileUploadModel.find({ verified: true }).populate('city');
+    const allRoom = await fileUploadModel.find({verified: true }).populate('city');
 
     if (!allRoom) {
       return res.status(404).send({ success: false, message: "Room details not found." });
@@ -110,21 +110,7 @@ exports.getSingleRoom = async (req, res) => {
     return res.status(500).send({ success: false, message: `Error while getting single room details ${error}` });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 

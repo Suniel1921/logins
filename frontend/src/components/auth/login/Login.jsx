@@ -38,9 +38,10 @@ const Login = () => {
         })
         //saving token in localstorage
         localStorage.setItem('token', JSON.stringify(response.data))
+        
 
           setTimeout(() => {
-            window.location.reload();            
+            window.location.reload();      
           }, 0);
         }
         
@@ -77,11 +78,5 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-
-
-
 
 

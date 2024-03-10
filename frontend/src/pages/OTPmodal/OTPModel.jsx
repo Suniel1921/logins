@@ -23,7 +23,8 @@ const OTPModal = ({ email, onClose }) => {
         const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/api/v1/auth/verifyOTP`, { email, otp });
 
         if (response.data.success) {
-          toast.success('OTP verification successful');
+          toast.success(response.data.message);
+          // toast.success('OTP verification successful');
           onClose(); 
           navigate('/');
         } else {

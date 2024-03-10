@@ -203,7 +203,7 @@ const CategoryList = ({
           step={100}
           defaultValue={priceRange}
           min={0}
-          max={20000}
+          max={200000}
           onChange={(value) => setPriceRangeLocal(value)}
           trackStyle={[{ backgroundColor: '#7571F9' }]} // Set track color for the Slider
           

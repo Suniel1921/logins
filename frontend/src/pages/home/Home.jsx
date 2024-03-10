@@ -14,7 +14,7 @@
 //   const [roomList, setRoomList] = useState([]);
 //   const [selectedCategory, setSelectedCategory] = useState(null);
 //   const [products, setProducts] = useState([]);
-//   const [priceRange, setPriceRange] = useState([0, 20000]);
+//   const [priceRange, setPriceRange] = useState([0, 200000]);
 //   const navigate = useNavigate();
 
 //   const getAllRoom = async () => {
@@ -36,7 +36,8 @@
 
 //   useEffect(() => {
 //     getAllRoom();
-//   }, []);
+//   }, [selectedCategory, roomList]);
+  
 
 //   useEffect(() => {
 //   }, [roomList]);
@@ -135,7 +136,7 @@ const Home = () => {
   const [roomList, setRoomList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [products, setProducts] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 20000]);
+  const [priceRange, setPriceRange] = useState([0, 200000]);
   const navigate = useNavigate();
 
   // Define a memoized getAllRoom function using useCallback
@@ -236,8 +237,11 @@ const Home = () => {
   );
 };
 
-// Export the Home component
 export default Home;
+
+
+
+
 
 
 

@@ -23,6 +23,7 @@
       box-sizing: border-box;
       margin: 0; /* Reset margin to avoid additional spacing issues */     
       cursor: pointer;
+      /* overflow: hidden; */ /*---for card hovev zoom in effect---*/
     }   
  
   .chilCard img {
@@ -30,7 +31,12 @@
     height: 300px;
     object-fit: cover;
     border-radius: 8px;
+    /* transition: scale 400ms; */ /*---for card hovev zoom in effect---*/
   }
+/*---for card hovev zoom in effect---*/
+  /* .chilCard img:hover{ 
+    scale: 115%;
+  } */
 
   .roomNotFound{
     display: flex;

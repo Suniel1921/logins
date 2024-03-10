@@ -89,7 +89,7 @@ const RoomDetails = () => {
                 
             ) : (
                 <div className='singleRoomcontainer'>
-                    <h3>{singleRoom.address}</h3>
+                    <h3 className='roomTitle'>{singleRoom.address}</h3>
                     <div className='roomImage'>
                         <div className='room'>
                             <img className='singleImg' src={singleRoom.imageUrl} alt="" loading="lazy" />
@@ -107,8 +107,18 @@ const RoomDetails = () => {
                     </div>
 
                     <div className='feature_locationContainer'>
-                        <h4 onClick={() => setSelectedSection('features')}>Features</h4>
-                        <h4 onClick={() => setSelectedSection('location')}>Location</h4>
+                        <h4 
+                            onClick={() => setSelectedSection('features')} 
+                            style={{color: selectedSection === 'features' ? '#7571f9' : 'black'}}
+                        >
+                            Features
+                        </h4>
+                        <h4 
+                            onClick={() => setSelectedSection('location')} 
+                            style={{color: selectedSection === 'location' ? '#7571f9' : 'black'}}
+                        >
+                            Location
+                        </h4>
                     </div>
 
                     {selectedSection === 'features' ? (
@@ -130,5 +140,3 @@ const RoomDetails = () => {
 }
 
 export default RoomDetails;
-
-

@@ -2,6 +2,10 @@
     padding-left: 100px;
     padding-right: 100px;
 }
+.roomTitle{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .roomImage {
     display: flex;
