@@ -26,7 +26,7 @@ const CategoryList = ({
   const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
 
   // State to manage the price range filter
-  const [priceRange, setPriceRangeLocal] = useState([0, 200000]);
+  const [priceRange, setPriceRangeLocal] = useState([0, 30000]);
 
   // State to store the currently selected category
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -90,7 +90,7 @@ const CategoryList = ({
 
   // Function to filter products based on the price range
   const filteredProducts = products.filter((product) => {
-    const productPrice = product.price; // Replace this with your actual product price property
+    const productPrice = product.price; 
     return productPrice >= priceRange[0] && productPrice <= priceRange[1];
   });
 
@@ -203,7 +203,7 @@ const CategoryList = ({
           step={100}
           defaultValue={priceRange}
           min={0}
-          max={200000}
+          max={30000}
           onChange={(value) => setPriceRangeLocal(value)}
           trackStyle={[{ backgroundColor: '#7571F9' }]} // Set track color for the Slider
           

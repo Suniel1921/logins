@@ -124,10 +124,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSearchGlobally } from '../../context/SearchContext';
 import { Helmet } from "react-helmet";
+import useOnlineOfflineStatus from '../../components/onlineOfflineStatus/useOnlineOfflineStatus';
+import { Modal } from 'antd';
 
 
 // Define the Home component
 const Home = () => {
+  const onlineOfflineMode = useOnlineOfflineStatus();  // checking user is online or offline mode 
   // Use the useSearchGlobally hook to access the searchQuery and setSearchQuery functions
   const { searchQuery, setSearchQuery } = useSearchGlobally();
 
@@ -182,14 +185,17 @@ const Home = () => {
       room.address.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [roomList, selectedCategory, priceRange, searchQuery]);
+  
 
-  // Render the component
+
+
   return (
     <>
       <Helmet>
         <title>Hamro Rooms</title>
         <meta name="description" content="Find affordable rooms for rent on Hamro Rooms. Search by city, rent, and more." />
       </Helmet>
+      
       <div className='scrollCategorys'>
         <CategoryList
           onCategoryClick={handleCategoryClick}
@@ -224,8 +230,8 @@ const Home = () => {
                       <p>Rent.{room.rent}/month</p>
                       <p>{room.city.name}</p>
                     </div> 
-                  ))}
-                
+                  ))}               
+                 
                 </>
                 
               )}
@@ -233,6 +239,19 @@ const Home = () => {
           )}
         </div>
       </section>
+      {/* ****************showing user offline modal**********************/}
+      {!onlineOfflineMode && (
+    <Modal
+      title="Offline"
+      open={!onlineOfflineMode}
+      onCancel={() => {}} // Make onCancel an empty function to prevent closing the modal by clicking outside or pressing ESC key
+      footer={null}
+    >
+      <h5>You are currently offline. Please check your internet connection.</h5>
+    </Modal>
+  )}
+      {/* ****************************************************************/}
+    
     </>
   );
 };

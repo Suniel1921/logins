@@ -1,3 +1,9 @@
+.views{
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .scrollCategorys{
   position: sticky;
   top: 67px;
@@ -24,6 +30,7 @@
       margin: 0; /* Reset margin to avoid additional spacing issues */     
       cursor: pointer;
       /* overflow: hidden; */ /*---for card hovev zoom in effect---*/
+      
     }   
  
   .chilCard img {

@@ -104,7 +104,7 @@ const PostYourRoom = ({ onClose }) => {
                 if (error.response) {
                     toast.error(error.response.data.message);
                 } else {
-                    toast.error("Something went wrong");
+                    toast.error("Something went wrong"); 
                 }
             }
         }
@@ -249,6 +249,10 @@ const PostYourRoom = ({ onClose }) => {
 };
 
 export default PostYourRoom;
+
+
+
+
 
 
 
