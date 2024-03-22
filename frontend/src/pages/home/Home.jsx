@@ -126,6 +126,7 @@ import { useSearchGlobally } from '../../context/SearchContext';
 import { Helmet } from "react-helmet";
 import useOnlineOfflineStatus from '../../components/onlineOfflineStatus/useOnlineOfflineStatus';
 import { Modal } from 'antd';
+import { FaRegEye } from "react-icons/fa";
 
 
 // Define the Home component
@@ -211,7 +212,7 @@ const Home = () => {
             // Show loading skeleton cards if isLoading is true
             <>
               {[...Array(8)].map((_, index) => (
-                <CardSkeleton key={index} />
+                <div className='zindexskeleton' key={index}><CardSkeleton key={index} /></div>
               ))}
             </>
           ) : (
@@ -227,8 +228,8 @@ const Home = () => {
                     <div className='chilCard' key={room.slug} onClick={() => navigate(`/roomDetails/${room.slug}`)}>
                       <img src={room.imageUrl} alt='room image' loading="lazy"  />
                       <h3>{room.address}</h3>
-                      <p>Rent.{room.rent}/month</p>
-                      <p>{room.city.name}</p>
+                      <p className='paraText'>Rent.{room.rent}/month</p>
+                      <p className='paraText'>{room.city.name}</p>
                     </div> 
                   ))}               
                  
@@ -242,7 +243,7 @@ const Home = () => {
       {/* ****************showing user offline modal**********************/}
       {!onlineOfflineMode && (
     <Modal
-      title="Offline"
+      title="Offline 🔴"
       open={!onlineOfflineMode}
       onCancel={() => {}} // Make onCancel an empty function to prevent closing the modal by clicking outside or pressing ESC key
       footer={null}
@@ -423,3 +424,5 @@ export default Home;
 
 // // Export the Home component
 // export default Home;
+
+

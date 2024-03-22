@@ -59,7 +59,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  border: 2px solid gray;
+  border: 2px solid #7171716e;
   border-radius: 8px;
   padding: 10px;
 }
@@ -83,6 +83,45 @@
 
 /* ***************media queries************************** */
 
+@media screen and (max-width: 760px) {
+  .filterText {
+    display: none;
+  }
+  .filterIonc {
+    background-color: var(--primary_Dark_Blue_color);
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: -14px;
+  }
+  .filterbyPrice {       
+    border: none;
+    border-radius: 0px;
+    padding: 0px;
+  }
+
+  .mainCategory {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .scrollCategorys {
+    position: sticky;
+    top: 67px;
+  }
+
+  .filterImg {
+    margin-top: 10px;
+    color: white;
+  }
+
+  .scrollCategorys {
+    top: 68px;
+  }
+}
+  
 @media screen and (max-width: 500px) {
   .filterText {
     display: none;
@@ -97,8 +136,7 @@
     margin-top: -14px;
   }
 
-  .filterbyPrice {   
-    
+  .filterbyPrice {       
     border: none;
     border-radius: 0px;
     padding: 0px;

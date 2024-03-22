@@ -1,4 +1,3 @@
-
 .user_initial {
   width: 33px;
   height: 33px;
@@ -12,8 +11,6 @@
   align-items: center;
   color: white;
 }
-
-
 
 .navbarContainer {
   position: sticky;
@@ -104,6 +101,38 @@
   }
 }
 
+@media screen and (max-width: 760px) {
+  .mainLogo {
+    /* width: 38px; */
+    width: 51px;
+  }
+  .postYourRoom {
+    background-color: var(--primary_Dark_Blue_color);
+    color: white;
+    padding: 13px 15px;
+    border-radius: 10px;
+    display: none;
+  }
+  .allIcons {
+    border: none;
+  }
+  .allIcons:hover {
+    box-shadow: none;
+  }
+  .hamburgurMenu {
+    display: none;
+  }
+  .postYourRoom {
+    display: block;
+    padding: 6px 6px;
+    margin-left: 5px;
+  }
+
+  .postYourRoomText {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .mainLogo {
     /* width: 38px; */
@@ -136,10 +165,8 @@
   }
 }
 
-
-@media screen and (max-width:120px) {
-    .user_initial {
-        display: none;
-    }
-    
+@media screen and (max-width: 120px) {
+  .user_initial {
+    display: none;
+  }
 }

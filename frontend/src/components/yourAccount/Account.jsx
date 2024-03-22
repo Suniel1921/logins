@@ -80,6 +80,7 @@ const Account = () => {
             <div className="userData">
               <h3>Welcome 🎉 {auth.user.name}</h3>
               <h4>{auth.user.email}</h4>
+              <button>change your password</button>
             </div>
             <div className="user">
               <img className="userImg" src="/img/user.png" alt="user" />
@@ -92,6 +93,3 @@ const Account = () => {
 };
 
 export default Account;
-
-
-

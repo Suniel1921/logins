@@ -10,11 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.19.2",
+    "@react-google-maps/api": "^2.19.3",
     "antd": "^5.12.8",
     "axios": "^1.6.5",
     "formik": "^2.4.5",
     "khalti-checkout-web": "^2.2.0",
+    "leaflet": "^1.9.4",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -20,6 +20,7 @@ import Users from './components/admin/users/Users';
 import AdminRoute from './components/admin/adminProtectedRoute/AdminRoute';
 import Room from './components/admin/rooms/Room';
 import Category from './components/admin/category/Category';
+import ResetPassword from './components/auth/resetPassword/ResetPassword';
 
 
 
@@ -61,3 +62,9 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+

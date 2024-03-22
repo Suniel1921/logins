@@ -18,7 +18,7 @@ import { Dropdown, Space } from 'antd';
 
 // Functional component for the Navbar
 const Navbar = () => {
-  
+
 
   // Style for the modal
   const modalStyle = {
@@ -42,7 +42,7 @@ const Navbar = () => {
   if (window.innerWidth <= 750) {
     modalStyle.top = "80px";
     modalStyle.left = "220px";
-    modalStyle.width = "20%"; 
+    modalStyle.width = "20%";
   }
   if (window.innerWidth <= 580) {
     modalStyle.top = "80px";
@@ -102,7 +102,7 @@ const Navbar = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("token");
     toast.success("Logged Out Successfully");
-    navigate("/")    
+    navigate("/")
   };
 
 
@@ -116,7 +116,7 @@ const Navbar = () => {
               <img className="mainLogo" src="/logo/hamrorooms.png" alt="" />
             </NavLink>
           </div>
-          
+
           {/* Search bar */}
           <div className="searchBar">
             <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -124,14 +124,14 @@ const Navbar = () => {
 
           {/* "Post Your Room" button */}
           <div className="postYourRoom" onClick={openPostYourRoomModel}>
-            <NavLink > <div className="plusicon"><CiSquarePlus size={20} /><span  className="postYourRoomText">Post Your Room</span></div></NavLink>
+            <NavLink > <div className="plusicon"><CiSquarePlus size={20} /><span className="postYourRoomText">Post Your Room</span></div></NavLink>
           </div>
 
           {/* User icon and menu */}
           <div className="userIcon">
             <i onClick={openModal}>
               <div className="allIcons">
-                <IoMenu size={20}  className='hamburgurMenu'/>
+                <IoMenu size={20} className='hamburgurMenu' />
                 {
                   auth.user ? (
                     <div className="user_initial">{auth.user.name.charAt(0).toUpperCase()}</div>
@@ -148,7 +148,7 @@ const Navbar = () => {
           onCancel={() => setIsModalOpen(false)}
           footer={null}
           style={modalStyle}
-          mask={false} 
+          mask={false}
           className="modalCustomWidth"
         >
           <div className="popUp_login_singup">
@@ -156,7 +156,7 @@ const Navbar = () => {
               <>
                 <h2 style={{ textAlign: 'center' }}>Hi ! {auth.user.name}</h2> <hr /> <br />
                 <NavLink to={'/account'} onClick={() => setIsModalOpen(false)}><p>Your Account</p></NavLink>
-            
+
                 <p>Help Center</p>
                 <p>Contact</p>
                 <p onClick={handleLogout}>Logout</p>
@@ -171,14 +171,16 @@ const Navbar = () => {
         </Modal>
       </div>
 
-      {/* Modals for login, signup, and "Post Your Room" */}
+      {/* Modals for login, signup, and "Post Your Room"*/}
       <Modal
         open={isLoginModalOpen}
         onCancel={() => setIsLoginModalOpen(false)}
         footer={null}
       >
-        <Login />
+        <Login onCloseModal={() => setIsLoginModalOpen(false)} /> {/* Pass prop onCloseModal */}
       </Modal>
+
+
       <Modal
         open={isSignupModelOpen}
         onCancel={() => setIsSignupModelOpen(false)}
@@ -191,7 +193,7 @@ const Navbar = () => {
       {/* Modal for "Post Your Room" */}
       <Modal open={isPostYourRoomModalOpen} onCancel={() => setIsPostYourRoomModalOpen(false)} footer={null}>
         <h3 style={{ textAlign: 'center' }}>Post Your Room From Here</h3>
-        <PostYourRoom onClose={closePostYourRoomModal} /> 
+        <PostYourRoom onClose={closePostYourRoomModal} />
       </Modal>
     </>
   );

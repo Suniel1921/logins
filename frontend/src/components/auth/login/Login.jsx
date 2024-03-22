@@ -8,7 +8,7 @@ import { useAuthGloabally } from "../../../context/AuthContext";
 import { FaRegEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
-const Login = () => {
+const Login = ({ onCloseModal }) => { //accessing prop for close login modal (onCloseModal)
   const [auth, setAuth] = useAuthGloabally();
   //form validation
   const validationSchema = Yup.object({
@@ -38,11 +38,8 @@ const Login = () => {
         })
         //saving token in localstorage
         localStorage.setItem('token', JSON.stringify(response.data))
-        
-
-          setTimeout(() => {
-            window.location.reload();      
-          }, 0);
+        onCloseModal(); // Close login modal
+        formik.resetForm(); //once form is submitted then form will be empty
         }
         
       } catch (error) {

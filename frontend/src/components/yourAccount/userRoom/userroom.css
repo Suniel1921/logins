@@ -55,10 +55,14 @@
   /* margin: 33px 33px; */
 }
 
+/* .userRoom {
+  width: calc((100% - (4 * 20px)) / 4); 
+  box-sizing: border-box;
+  margin: 0;
+} */
+
 .userRoom {
-  width: calc(
-    (100% - (4 * 20px)) / 4
-  ); /* Calculate width for 4 cards per row with a 10px gap */
+  width: 30%;
   box-sizing: border-box;
   margin: 0;
 }
@@ -104,8 +108,6 @@
   outline: none;
 }
 
-
-
 .updateBtn {
   background-color: var(--primary_Dark_Blue_color);
   width: 100%;
@@ -140,7 +142,6 @@
   border-radius: 9px;
 }
 
-
 .not-verified {
   background-color: var(--primary_Dark_Red_color);
   width: 50%;
@@ -150,12 +151,12 @@
   border-radius: 9px;
 }
 
-.tag{  
-    display: flex;
-    align-items:center;
-    justify-content: flex-start;
-    text-align:center;
-    width: 100px;
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100px;
 }
 
 /* media quieries for user rooms  */

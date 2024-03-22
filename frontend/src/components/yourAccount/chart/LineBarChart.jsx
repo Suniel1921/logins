@@ -50,15 +50,15 @@ const LineBarChart = () => {
   return (
     <>
       <div className="linebarchart">
-        <h3>Total Visitors</h3>
+        <h3>Total Visitor</h3>
         <div className="chart">
           <ResponsiveContainer width="99%" height={150}>
             <BarChart width={150} height={40} data={data}>
               <Bar dataKey="uv" fill="#7572f9" />
-              <Tooltip 
-                contentStyle={{background: '#2a3447', borderRadius: '5px'}}
-                labelStyle={{display: 'none'}}
-                cursor={{fill: 'none'}}
+              <Tooltip
+                contentStyle={{ background: '#2a3447', borderRadius: '5px' }}
+                labelStyle={{ display: 'none' }}
+                cursor={{ fill: 'none' }}
               />
             </BarChart>
           </ResponsiveContainer>

@@ -190,7 +190,7 @@ const CategoryList = ({
 
       {/* Ant Design Modal for Price Range Filter */}
       <Modal
-        title="Price Range Filter"
+        title="Filter By Price Range"
         open={isFilterModalVisible}
         onOk={handleFilterOk}
         onCancel={handleFilterCancel}

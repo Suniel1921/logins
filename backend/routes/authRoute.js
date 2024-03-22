@@ -18,4 +18,5 @@ router.get("/totalUsers", requireLogin, isAdmin, controller.totalUserCount);
 
 
 
+
 module.exports = router;
