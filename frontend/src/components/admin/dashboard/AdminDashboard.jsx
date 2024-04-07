@@ -1,6 +1,6 @@
 import React from 'react'
 import '../dashboard/adminDashboard.css'
-import SideMenu from '../sideMenu/SideMenu'
+import SideMenu from '../sidemenu/SideMenu'
 import AdminChart from '../adminChart/AdminChart'
 
 const AdminDashboard = () => {

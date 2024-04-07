@@ -33,40 +33,37 @@
 
 
 
+
+
+
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 
 const Location = ({ singleRoom }) => {
-  const [map, setMap] = useState(null);
-  const defaultCenter = { lat: singleRoom.latitude, lng: singleRoom.longitude };
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
-    script.async = true;
-    script.onload = () => {
-      setMap(new window.google.maps.Map(document.getElementById('map'), {
-        center: defaultCenter,
-        zoom: 15
-      }));
-    };
-    document.head.appendChild(script);
+    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${singleRoom.latitude}&lon=${singleRoom.longitude}`;
 
-    return () => {
-      document.head.removeChild(script);
-    };
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        setAddress(data.display_name);
+      })
+      .catch(error => {
+        console.error('Error fetching address:', error);
+      });
   }, [singleRoom]);
 
   return (
     <div className='roomdetails'>
-      <h5>Location: {singleRoom.latitude}</h5>
-      <h5>Location: {singleRoom.longitude}</h5>
-      <div style={{ height: '400px', width: '100%' }}>
-        <div id="map" style={{ height: '100%', width: '100%' }}></div>
-      </div>
+      <h5>Address: {address}</h5>
     </div>
   );
 };
 
 export default Location;
+
+
+
+
 

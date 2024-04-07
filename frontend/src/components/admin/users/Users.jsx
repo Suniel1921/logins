@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SideMenu from '../sideMenu/SideMenu';
+import SideMenu from '../sidemenu/SideMenu';
 import { Table } from 'antd';
 import '../users/user.css';
 import { toast } from 'react-toastify';

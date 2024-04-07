@@ -65,7 +65,7 @@ const CirlcePiChart = () => {
   return (
     <>
       <div className="circlePIChartBox">
-        <h3>heading</h3>
+        <h3>Bost Your Room</h3>
         <div className="chart">
           <ResponsiveContainer width="99%" height={300}>
             <PieChart width={400} height={400}>

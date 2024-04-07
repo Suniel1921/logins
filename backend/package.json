@@ -4,7 +4,7 @@
   "description": "hamro rooms where you can find your dream rooms",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

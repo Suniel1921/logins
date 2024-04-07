@@ -184,27 +184,6 @@ exports.getSingleRoom = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
 //upload room controller (put method)
 exports.updateRoom = async (req ,res)=>{
     try {

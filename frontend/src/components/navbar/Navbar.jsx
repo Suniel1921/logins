@@ -141,6 +141,7 @@ const Navbar = () => {
             </i>
           </div>
         </nav>
+  
 
         {/* Main modal for user actions */}
         <Modal

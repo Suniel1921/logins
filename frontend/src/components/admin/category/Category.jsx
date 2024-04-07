@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Modal, Button, Input, Space, Tag } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import "../category/category.css";
-import SideMenu from "../sideMenu/SideMenu";
+import SideMenu from "../sidemenu/SideMenu";
 import axios from "axios";
 import { toast } from "react-toastify";
 

@@ -122,7 +122,7 @@
 //             const position = await new Promise((resolve, reject) => {
 //                 navigator.geolocation.getCurrentPosition(resolve, reject);
 //             });
-    
+
 //             formik.setFieldValue("latitude", position.coords.latitude);
 //             formik.setFieldValue("longitude", position.coords.longitude);
 //             toast.success("Location selected successfully!");
@@ -307,6 +307,8 @@ import { redirect, useNavigate } from 'react-router-dom';
 const PostYourRoom = ({ onClose }) => {
     const [category, setCategory] = useState([]);
     const navigate = useNavigate();
+    const [locationAccess, setLocationAccess] = useState(null); //for choose your loction button color 
+
 
     const getAllCategory = async () => {
         try {
@@ -361,8 +363,8 @@ const PostYourRoom = ({ onClose }) => {
             water: '',
             floor: '',
             roomType: '',
-            latitude : '',
-            longitude : '',
+            latitude: '',
+            longitude: '',
 
         },
         validationSchema: validationSchema,
@@ -388,6 +390,7 @@ const PostYourRoom = ({ onClose }) => {
 
                 const response = await axios.post(`${import.meta.env.VITE_REACT_APP_URL}/api/v1/upload/uploadimg`, formData);
                 // console.log(response);
+                console.log("Response:", response)
 
                 if (response.data.success) {
                     // Close the "Uploading..." toast
@@ -405,47 +408,41 @@ const PostYourRoom = ({ onClose }) => {
                 if (error.response) {
                     toast.error(error.response.data.message);
                 } else {
-                    toast.error("Something went wrong");
+                    toast.error("Something went wrong.");
+                    console.log(error)
                 }
+                
             }
         }
     });
 
 
-
     const handleLocationSelection = async () => {
         try {
-            // Use the getCurrentPosition method to get the current position of the device
             const position = await new Promise((resolve, reject) => {
-                // Call getCurrentPosition with resolve and reject callbacks
                 navigator.geolocation.getCurrentPosition(resolve, reject);
             });
-    
-            // If the position is successfully obtained, set the latitude and longitude values in the formik state
+
             formik.setFieldValue("latitude", position.coords.latitude);
             formik.setFieldValue("longitude", position.coords.longitude);
-            
-            // Display a success toast message
             toast.success("Location selected successfully!");
+            setLocationAccess(true); // Set location access to true
         } catch (error) {
-            // If there's an error, handle it appropriately
             if (error.code === 1) {
-                // User denied geolocation access
-                toast.error("You've denied access to your location. Please enable geolocation in your browser settings if you wish to proceed.");
+                toast.error("You've denied access to your location. Please enable location in your browser settings if you wish to proceed.");
             } else if (error.code === 2) {
-                // Location information is currently unavailable
                 toast.error("Location information is currently unavailable. Please try again later.");
             } else if (error.code === 3) {
-                // The request to get location timed out
                 toast.error("The request to get your location timed out. Please try again.");
             } else {
-                // Other errors
                 toast.error("Error selecting location. Please try again.");
             }
+            setLocationAccess(false); // Set location access to false
         }
     };
-    
-    
+
+
+
 
     return (
         <>
@@ -491,7 +488,7 @@ const PostYourRoom = ({ onClose }) => {
                             accept="image/*"
                         />
                     </div>
-                    {                    formik.values.imageFile && (
+                    {formik.values.imageFile && (
                         <img src={URL.createObjectURL(formik.values.imageFile)} alt="Preview" height={'100px'} />
                     )}
 
@@ -573,7 +570,17 @@ const PostYourRoom = ({ onClose }) => {
                         )}
                     </div>
 
-                    <button id='parking' type="button" onClick={handleLocationSelection}>Choose Your Location</button>
+                    {/* <button id='parking' type="button" onClick={handleLocationSelection}>Choose Your Location</button> */}
+                    <p
+                        id='parking'
+                        type="button"
+                        onClick={handleLocationSelection}
+                        className={locationAccess === null ? '' : locationAccess ? 'location-access-allowed' : 'location-access-denied'}
+                    >
+                        {locationAccess === null ? 'Choose Your Location' : locationAccess ? 'Location Set Successfully' : 'Choose Your Location'}
+                    </p>
+
+
 
                     {/* <button className='postRoomFormBtn' type="submit">Submit</button> */}
 
@@ -583,7 +590,7 @@ const PostYourRoom = ({ onClose }) => {
 
 
                     <button className='postRoomFormBtn' type="submit" disabled={formik.isSubmitting || !(formik.values.latitude && formik.values.longitude)}>
-                          {formik.isSubmitting ? "Uploading..." : "Submit"}
+                        {formik.isSubmitting ? "Uploading..." : "Submit"}
                     </button>
 
 

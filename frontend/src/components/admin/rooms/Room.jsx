@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SideMenu from "../sideMenu/SideMenu";
+import SideMenu from "../sidemenu/SideMenu";
 import { Table, Tag, Button, Modal, Input, Space, Select } from "antd";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -157,11 +157,11 @@ const Room = () => {
             key: "actions",
             render: (text, room) => (
                 <Space size="middle">
-                    <Button style={{backgroundColor: '#00BF8D', color: '#ffff'}} onClick={() => handleEditClick(room)}>
+                    <Button style={{ backgroundColor: '#00BF8D', color: '#ffff' }} onClick={() => handleEditClick(room)}>
                         Edit
                     </Button>
-                    
-                    <Button style={{backgroundColor:'#FF3B59', color: '#ffff'}} onClick={() => handleDeleteClick(room)}>
+
+                    <Button style={{ backgroundColor: '#FF3B59', color: '#ffff' }} onClick={() => handleDeleteClick(room)}>
                         Delete
                     </Button>
                 </Space>
@@ -188,10 +188,12 @@ const Room = () => {
 
             <Modal
                 title="Edit Room Details"
-                open={isEditModalVisible}
-                onOk={handleEditModalOk}
-                onCancel={handleEditModalCancel}
-            >
+    open={isEditModalVisible}
+    onOk={handleEditModalOk}
+    onCancel={handleEditModalCancel}
+    okButtonProps={{ style: { backgroundColor: '#7371f9', color: 'white' } }}
+    cancelButtonProps={{ style: { borderColor: '#7371f9', color: 'black' } }}
+             >
                 <div className="editRoomForm">
                     <div className="formRow">
                         <div className="formColumn">
@@ -275,21 +277,20 @@ const Room = () => {
                             />
                         </div>
 
-
-                        <div className="formColumn">                            
-                                <label htmlFor="verified">Verified</label>
-                                <Select
-                                    value={selectedRoom?.verified ? "True" : "False"}
-                                    style={{ width: 120 }}
-                                    onChange={(value) =>
-                                        setSelectedRoom({ ...selectedRoom, verified: value === "True" })
-                                    }
-                                >
-                                    <Option value="True">Verified</Option>
-                                    <Option value="False">Not Verified</Option>
-                                </Select>                           
-
+                        <div className="formColumn">
+                            <label htmlFor="verified">Verified</label>
+                            <Select
+                                value={selectedRoom?.verified ? "True" : "False"}
+                                style={{ width: 200, height: 45 }} 
+                                onChange={(value) =>
+                                    setSelectedRoom({ ...selectedRoom, verified: value === "True" })
+                                }
+                            >
+                                <Option value="True">Verified</Option>
+                                <Option value="False">Not Verified</Option>
+                            </Select>
                         </div>
+
 
 
 

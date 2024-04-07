@@ -42,6 +42,17 @@
   cursor: pointer;
 }
 
+.location-access-allowed {
+  /* border-color: green !important; */
+  background-color: rgba(49, 196, 49, 0.96);
+  color: white;
+}
+
+.location-access-denied {
+  /* border-color: red !important; */
+  background-color: red;
+}
+
 /* **********media queries for modla pop up box************** */
 @media screen and (max-width: 600px) {
   .postRoomForm {

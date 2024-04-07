@@ -10,6 +10,7 @@ import CirlcePiChart from "./chart/CirlcePiChart";
 import { useAuthGloabally } from "../../context/AuthContext";
 import axios from "axios";
 import Loading from "../auth/signup/Loading";
+import BostYourRoomChart from "./chart/BostYourRoomChart";
 
 const Account = () => {
   const [auth, setAuth] = useAuthGloabally();
@@ -64,13 +65,13 @@ const Account = () => {
                 </p>
               </div>
               <div className="box box2"><Chart /></div>
-              <div className="box box3"><Chart /></div>
+              {/* <div className="box box3"><Chart /></div> */}
               <div className="box box4"><CirlcePiChart /></div>
               <div className="box box5"><Chart /></div>
               <div className="box box6"><Chart /></div>
               <div className="box box7"><AreaChartBox /></div>
               <div className="box box8"><LineBarChart /></div>
-              <div className="box box9"><LineBarChart /></div>
+              <div className="box box9"><BostYourRoomChart/></div>
             </div>
           </div>
         </div>
